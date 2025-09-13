@@ -22,12 +22,14 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex items-center justify-between py-3 px-4 shadow-sm border-b bg-white">
+    <div className="flex items-center justify-between py-3 px-4 sm:px-6 shadow-sm border-b bg-white">
+      {/* Logo */}
       <Link to="/">
-        <img src={assets.logo} className="w-[60px]" alt="logo" />
+        <img src={assets.logo} className="w-[60px] sm:w-[70px]" alt="logo" />
       </Link>
 
-      <ul className="hidden lg:flex gap-3 text-[13px] font-semibold text-gray-800">
+      {/* Desktop Nav Links */}
+      <ul className="hidden lg:flex gap-4 text-[13px] font-semibold text-gray-800">
         <NavLink
           to="/WishRoomHome"
           className="flex items-baseline gap-1 hover:text-pink-600 relative"
@@ -59,29 +61,37 @@ const Navbar = () => {
         </NavLink>
       </ul>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 sm:gap-5 md:gap-6">
         <div
-          className="hidden md:flex items-center rounded-md"
+          className="flex flex-col items-center cursor-pointer text-center"
           onClick={() => {
             setShowSearch(true);
             navigate("/collection");
           }}
         >
-          <img src={assets.search_icon} className="w-5 mr-2" alt="search" />
+          <img
+            src={assets.search_icon}
+            className="w-6 sm:w-6 md:w-[27px]"
+            alt="search"
+          />
+          <p className="text-[10px] sm:text-xs text-gray-700 font-medium">
+            Search
+          </p>
         </div>
-        <div className="group relative">
+
+        <div className="hidden lg:block group relative text-center">
           <img
             onClick={() => (token ? null : navigate("/login"))}
             src={assets.profile_icon}
-            className="w-5 cursor-pointer"
+            className="w-5 md:w-6 cursor-pointer mx-auto"
             alt="profile"
           />
-          <p className="text-xs text-gray-700 font-medium text-center">
+          <p className="text-[10px] sm:text-xs text-gray-700 font-medium">
             Profile
           </p>
 
           {token && (
-            <div className="hidden group-hover:block absolute right-0 mt-2 w-36 py-3 px-5 bg-white border rounded shadow-md">
+            <div className="hidden group-hover:block absolute right-0 mt-2 w-36 py-3 px-4 bg-white border rounded shadow-md">
               <p
                 onClick={() => navigate("/orders")}
                 className="cursor-pointer hover:text-black text-gray-600 mb-2"
@@ -97,31 +107,42 @@ const Navbar = () => {
             </div>
           )}
         </div>
-        <Link to="/Wishlist" className="relative text-center">
-          <div className="text-center cursor-pointer">
-            <img
-              src={assets.heart_icon}
-              className="w-5 mx-auto"
-              alt="wishlist"
-            />
-            <p className="text-xs text-gray-700 font-medium">Wishlist</p>
-          </div>
+
+        <Link to="/Wishlist" className="flex flex-col items-center text-center">
+          <img
+            src={assets.heart_icon}
+            className="w-5 sm:w-6 md:w-7"
+            alt="wishlist"
+          />
+          <p className="text-[10px] sm:text-xs text-gray-700 font-medium">
+            Wishlist
+          </p>
         </Link>
-        <Link to="/cart" className="relative text-center">
-          <img src={assets.cart_icon} className="w-5 mx-auto" alt="cart" />
-          <p className="text-xs text-gray-700 font-medium">Bag</p>
+
+        <Link to="/cart" className="flex flex-col items-center relative text-center">
+          <img
+            src={assets.cart_icon}
+            className="w-5 sm:w-5 md:w-6"
+            alt="cart"
+          />
+          <p className="text-[10px] sm:text-xs text-gray-700 font-medium">
+            Bag
+          </p>
           {getCartCount() > 0 && (
-            <span className="absolute top-0 right-0 bg-red-500 text-white text-[10px] w-5 h-5 flex items-center justify-center rounded-full">
+            <span className="absolute -top-1 right-1 bg-red-500 text-white text-[9px] sm:text-[10px] w-4 h-4 flex items-center justify-center rounded-full">
               {getCartCount()}
             </span>
           )}
         </Link>
-        <img
+        <div
+          className="flex flex-col items-center lg:hidden cursor-pointer"
           onClick={() => setVisible(true)}
-          src={assets.menu_icon}
-          className="w-5 cursor-pointer lg:hidden"
-          alt="menu"
-        />
+        >
+          <img src={assets.menu_icon} className="w-5 sm:w-6" alt="menu" />
+          <p className="text-[10px] pt-[4px] sm:text-xs text-gray-700 font-medium">
+            Menu
+          </p>
+        </div>
       </div>
 
       <div
@@ -137,6 +158,56 @@ const Navbar = () => {
             <img className="h-4 rotate-180" src={assets.dropdown_icon} alt="" />
             <p>Back</p>
           </div>
+
+          <div className="py-3 px-6 border-b hover:bg-gray-100 cursor-pointer">
+            {token ? (
+              <div>
+                <p
+                  onClick={() => {
+                    setVisible(false);
+                    navigate("/orders");
+                  }}
+                  className="mb-2"
+                >
+                  Orders
+                </p>
+                <p
+                  onClick={() => {
+                    logout();
+                    setVisible(false);
+                  }}
+                >
+                  Logout
+                </p>
+              </div>
+            ) : (
+              <p
+                onClick={() => {
+                  setVisible(false);
+                  navigate("/login");
+                }}
+              >
+                Profile
+              </p>
+            )}
+          </div>
+
+          <NavLink
+            onClick={() => setVisible(false)}
+            className="py-3 px-6 border-b hover:bg-gray-100"
+            to="/WishRoomHome"
+          >
+            TryON
+          </NavLink>
+
+          <NavLink
+            onClick={() => setVisible(false)}
+            className="py-3 px-6 border-b hover:bg-gray-100"
+            to="/Wishlist"
+          >
+            Wishlist
+          </NavLink>
+
           <NavLink
             onClick={() => setVisible(false)}
             className="py-3 px-6 border-b hover:bg-gray-100"
@@ -157,6 +228,13 @@ const Navbar = () => {
             to="/kids"
           >
             KIDS
+          </NavLink>
+          <NavLink
+            onClick={() => setVisible(false)}
+            className="py-3 px-6 border-b hover:bg-gray-100"
+            to="/genz"
+          >
+            GENZ
           </NavLink>
           <NavLink
             onClick={() => setVisible(false)}
@@ -186,3 +264,8 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
+
+
+
