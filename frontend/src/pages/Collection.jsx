@@ -13,78 +13,143 @@ const Collection = () => {
   const [filterProducts,setFilterProducts] = useState([]);
   const [category,setCategory] = useState([]);
   const [subCategory,setSubCategory] = useState([]);
-  const [sortType,setSortType] = useState('relavent')
+  const [sortType,setSortType] = useState('relavent');
+  const [aiKeywords, setAiKeywords] = useState([]);
+  const [isAiLoading, setIsAiLoading] = useState(false);
+  const [refinedTitles, setRefinedTitles] = useState([]);
+  const [isRefining, setIsRefining] = useState(false);
+
+  const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+  const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${API_KEY}`;
+
+  const fetchKeywordsFromAI = async (query) => {
+    if (!query) {
+      setAiKeywords([]);
+      return;
+    }
+    setIsAiLoading(true);
+
+    const systemPrompt = "You are an expert fashion stylist. Based on the user's query, provide a list of relevant keywords to filter products by. Include categories, materials, and styles. Respond only with a JSON array of strings.";
+    const userQuery = `Generate keywords for: "${query}"`;
+    
+    const payload = {
+      contents: [{ parts: [{ text: userQuery }] }],
+      generationConfig: {
+        responseMimeType: "application/json",
+        responseSchema: {
+          type: "ARRAY",
+          items: {
+            type: "STRING",
+          },
+        },
+      },
+      systemInstruction: {
+        parts: [{ text: systemPrompt }]
+      },
+    };
+
+    try {
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json();
+      const keywords = result.candidates?.[0]?.content?.parts?.[0]?.text;
+      
+      if (keywords) {
+        const parsedKeywords = JSON.parse(keywords);
+        setAiKeywords(parsedKeywords);
+      } else {
+        setAiKeywords([]);
+      }
+    } catch (error) {
+      setAiKeywords([]);
+    } finally {
+      setIsAiLoading(false);
+    }
+  };
+
+ 
 
   const toggleCategory = (e) => {
-
     if (category.includes(e.target.value)) {
         setCategory(prev=> prev.filter(item => item !== e.target.value))
+    } else {
+      setCategory(prev => [...prev, e.target.value])
     }
-    else{
-      setCategory(prev => [...prev,e.target.value])
-    }
-
   }
 
   const toggleSubCategory = (e) => {
-
     if (subCategory.includes(e.target.value)) {
       setSubCategory(prev=> prev.filter(item => item !== e.target.value))
-    }
-    else{
-      setSubCategory(prev => [...prev,e.target.value])
+    } else {
+      setSubCategory(prev => [...prev, e.target.value])
     }
   }
 
-  
-
-  const applyFilter = () => {
-
+  const applyFiltersAndSort = () => {
     let productsCopy = products.slice();
-
-    if (showSearch && search) {
+    if (showSearch && aiKeywords.length > 0) {
+      productsCopy = productsCopy.filter(item => 
+        aiKeywords.some(keyword => 
+          item.name.toLowerCase().includes(keyword.toLowerCase()) || 
+          item.description.toLowerCase().includes(keyword.toLowerCase())
+        )
+      );
+    } else if (showSearch && search) {
       productsCopy = productsCopy.filter(item => item.name.toLowerCase().includes(search.toLowerCase()))
     }
-
+    if (showSearch && refinedTitles.length > 0) {
+      productsCopy = productsCopy.filter(item => refinedTitles.includes(item.name));
+    }
     if (category.length > 0) {
       productsCopy = productsCopy.filter(item => category.includes(item.category));
     }
-
-    if (subCategory.length > 0 ) {
+    if (subCategory.length > 0) {
       productsCopy = productsCopy.filter(item => subCategory.includes(item.subCategory))
     }
-
-    setFilterProducts(productsCopy)
-
-  }
-
-  const sortProduct = () => {
-
-    let fpCopy = filterProducts.slice();
-
     switch (sortType) {
       case 'low-high':
-        setFilterProducts(fpCopy.sort((a,b)=>(a.price - b.price)));
+        productsCopy = productsCopy.sort((a,b)=>(a.price - b.price));
         break;
-
       case 'high-low':
-        setFilterProducts(fpCopy.sort((a,b)=>(b.price - a.price)));
+        productsCopy = productsCopy.sort((a,b)=>(b.price - a.price));
         break;
-
       default:
-        applyFilter();
         break;
     }
 
-  }
+    setFilterProducts(productsCopy);
+  };
+  useEffect(() => {
+    if (showSearch && search) {
+      fetchKeywordsFromAI(search);
+    } else {
+      setAiKeywords([]);
+    }
+  }, [search, showSearch]);
+  useEffect(() => {
+    if (showSearch && aiKeywords.length > 0) {
+      const initialFilteredTitles = products
+        .filter(item => 
+          aiKeywords.some(keyword => 
+            item.name.toLowerCase().includes(keyword.toLowerCase()) || 
+            item.description.toLowerCase().includes(keyword.toLowerCase())
+          )
+        )
+        .map(item => item.name);
+      
+      fetchRefinedTitlesFromAI(search, initialFilteredTitles);
+    } else {
+      setRefinedTitles([]);
+    }
+  }, [aiKeywords, search, showSearch, products]);
 
-  useEffect(()=>{
-      applyFilter();
-  },[category,subCategory,search,showSearch,products])
-
-  useEffect(()=>{
-    sortProduct();
-  },[sortType])
+  useEffect(() => {
+    applyFiltersAndSort();
+  }, [category, subCategory, sortType, aiKeywords, refinedTitles, showSearch, search, products]);
 
   return (
     <>
@@ -136,9 +201,15 @@ const Collection = () => {
         </div>
         <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6'>
           {
-            filterProducts.map((item,index)=>(
-              <ProductItem key={index} name={item.name} id={item._id} price={item.price} image={item.image} />
-            ))
+            (isAiLoading || isRefining) ? (
+              <div className="flex justify-center items-center w-full col-span-full h-64 text-gray-500">
+                <p>Generating vibe results...</p>
+              </div>
+            ) : (
+              filterProducts.map((item,index)=>(
+                <ProductItem key={index} name={item.name} id={item._id} price={item.price} image={item.image} />
+              ))
+            )
           }
         </div>
       </div>
@@ -150,3 +221,4 @@ const Collection = () => {
 }
 
 export default Collection
+
