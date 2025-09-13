@@ -21,7 +21,7 @@ import WishList from './pages/WishList'
 
 const App = () => {
   return (
-    <div className="px-2 sm:px-[2vw] md:px-[3vw] lg:px-[4vw]">
+    <div className=" p-[4px]">
       <ToastContainer />
       <SearchBar />
       <Routes>
