@@ -730,7 +730,7 @@ export const prod = [
         price: 350,
         image: [p_img52],
         category: "Men",
-        subCategory: "Winterwear",
+        subCategory: "Topwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716668445448,
         bestseller: false
@@ -742,7 +742,7 @@ export const prod = [
         price: 350,
         image: [diwali_p1],
         category: "Women",
-        subCategory: "Topwear",
+        subCategory: "full_set",
         sizes: ["S", "M", "L", "XL"],
         date: 1716668445448,
         bestseller: true
@@ -754,7 +754,7 @@ export const prod = [
         price: 3500,
         image: [diwali_p2],
         category: "Women",
-        subCategory: "Topwear",
+        subCategory: "full_set",
         sizes: ["S", "M", "L", "XL"],
         date: 1716668445448,
         bestseller: false
@@ -766,7 +766,7 @@ export const prod = [
         price: 3500,
         image: [diwali_p3],
         category: "Women",
-        subCategory: "Topwear",
+        subCategory: "full_set",
         sizes: ["S", "M", "L", "XL"],
         date: 1716668445448,
         bestseller: false
@@ -778,7 +778,7 @@ export const prod = [
         price: 2500,
         image: [diwali_p4],
         category: "Women",
-        subCategory: "Topwear",
+        subCategory: "full_set",
         sizes: ["S", "M", "L", "XL"],
         date: 1716668445448,
         bestseller: false
@@ -790,7 +790,7 @@ export const prod = [
         price: 2500,
         image: [diwali_p5],
         category: "Men",
-        subCategory: "Topwear",
+        subCategory: "full_set",
         sizes: ["S", "M", "L", "XL"],
         date: 1716668445448,
         bestseller: true
@@ -802,7 +802,7 @@ export const prod = [
         price: 2500,
         image: [holi_p1],
         category: "Women",
-        subCategory: "Topwear",
+        subCategory: "full_set",
         sizes: ["S", "M", "L", "XL"],
         date: 1716668445448,
         bestseller: false
@@ -814,7 +814,7 @@ export const prod = [
         price: 500,
         image: [holi_p2],
         category: "Kids",
-        subCategory: "Topwear",
+        subCategory: "full_set",
         sizes: ["S", "M", "L", "XL"],
         date: 1716668445448,
         bestseller: false
@@ -826,7 +826,7 @@ export const prod = [
         price: 2500,
         image: [holi_p3],
         category: "Women",
-        subCategory: "Topwear",
+        subCategory: "full_set",
         sizes: ["S", "M", "L", "XL"],
         date: 1716668445448,
         bestseller: true
@@ -838,7 +838,7 @@ export const prod = [
         price: 2500,
         image: [holi_p4],
         category: "Women",
-        subCategory: "Topwear",
+        subCategory: "full_set",
         sizes: ["S", "M", "L", "XL"],
         date: 1716668445448,
         bestseller: true
@@ -850,7 +850,7 @@ export const prod = [
         price: 2500,
         image: [holi_p5],
         category: "Women",
-        subCategory: "Topwear",
+        subCategory: "full_set",
         sizes: ["S", "M", "L", "XL"],
         date: 1716668445448,
         bestseller: true
@@ -862,7 +862,7 @@ export const prod = [
         price: 2500,
         image: [rain_p1],
         category: "Men",
-        subCategory: "Topwear",
+        subCategory: "full_set",
         sizes: ["S", "M", "L", "XL"],
         date: 1716668445448,
         bestseller: false
@@ -874,7 +874,7 @@ export const prod = [
         price: 2500,
         image: [rain_p2],
         category: "Women",
-        subCategory: "Topwear",
+        subCategory: "full_set",
         sizes: ["S", "M", "L", "XL"],
         date: 1716668445448,
         bestseller: false
@@ -886,7 +886,7 @@ export const prod = [
         price: 2500,
         image: [rain_p3],
         category: "Men",
-        subCategory: "Topwear",
+        subCategory: "full_set",
         sizes: ["S", "M", "L", "XL"],
         date: 1716668445448,
         bestseller: false
@@ -898,7 +898,7 @@ export const prod = [
         price: 250,
         image: [rain_p4],
         category: "Women",
-        subCategory: "Topwear",
+        subCategory: "full_set",
         sizes: ["S", "M", "L", "XL"],
         date: 1716668445448,
         bestseller: false
