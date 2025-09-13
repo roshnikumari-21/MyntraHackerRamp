@@ -16,8 +16,6 @@ const images = [banner1, banner2, banner3, banner4 , banner5 , banner6 ,banner7 
 
 const Carousel = () => {
   const [index, setIndex] = useState(0);
-
-  // Auto slide every 4s
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length);
@@ -39,8 +37,6 @@ const Carousel = () => {
           transition={{ duration: 1 }}
         />
       </AnimatePresence>
-
-      {/* Dots */}
       <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2">
         {images.map((_, i) => (
           <button
@@ -52,8 +48,6 @@ const Carousel = () => {
           ></button>
         ))}
       </div>
-
-      {/* Optional Prev/Next buttons */}
       <button
         onClick={() =>
           setIndex((prev) => (prev - 1 + images.length) % images.length)

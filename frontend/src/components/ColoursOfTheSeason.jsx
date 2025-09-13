@@ -1,6 +1,4 @@
 import React from "react";
-
-// Import your images
 import metallic from "../assets/images/u1.webp";
 import olive from "../assets/images/u2.webp";
 import cobalt from "../assets/images/u3.webp";

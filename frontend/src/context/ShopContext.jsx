@@ -95,9 +95,6 @@ const addMultipleToCart = async (items) => {
     }
   }
 };
-
-
-
     const getCartCount = () => {
         let totalCount = 0;
         for (const items in cartItems) {
@@ -211,5 +208,4 @@ const addMultipleToCart = async (items) => {
     )
 
 }
-
 export default ShopContextProvider;

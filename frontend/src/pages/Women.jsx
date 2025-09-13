@@ -71,8 +71,7 @@ const Women = () => {
   return (
     <>
       <Navbar />
-      <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t">
-        {/* Filters */}
+      <div className="flex flex-col sm:flex-row gap-1 px-[10px] sm:gap-10 pt-10 border-t">
         <div className="min-w-60">
           <p
             onClick={() => setShowFilter(!showFilter)}
@@ -86,7 +85,6 @@ const Women = () => {
             />
           </p>
 
-          {/* Subcategory filter */}
           <div
             className={`border border-gray-300 pl-5 py-3 my-5 ${
               showFilter ? "" : "hidden"
@@ -125,7 +123,6 @@ const Women = () => {
           </div>
         </div>
 
-        {/* Products Section */}
         <div className="flex-1">
           <div className="flex justify-between text-base sm:text-2xl mb-4">
             <Title text1={"WOMEN"} text2={"COLLECTIONS"} />

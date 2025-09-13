@@ -1,7 +1,6 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
-import AdminLogin from './pages/AdminLogin'
 import Collection from './pages/Collection'
 import Men from './pages/Men'
 import Women from './pages/Women'
@@ -16,12 +15,11 @@ import WishRoomHome from './pages/WishRoomHome'
 import SearchBar from './components/SearchBar'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Verify from './pages/Verify'
 import WishList from './pages/WishList'
 
 const App = () => {
   return (
-    <div className=" p-[4px]">
+    <div>
       <ToastContainer />
       <SearchBar />
       <Routes>
@@ -35,11 +33,9 @@ const App = () => {
         <Route path='/login' element={<Login />} />
         <Route path='/place-order' element={<PlaceOrder />} />
         <Route path='/orders' element={<Orders />} />
-        <Route path='/verify' element={<Verify />} />
         <Route path = '/WishRoom' element = {<WishRoom/>}/>
         <Route path = '/WishRoomHome' element = {<WishRoomHome/>}/>
         <Route path='/wishlist' element = {<WishList/>}/>
-        <Route path='/adminLogin/*' element = {<AdminLogin/>}/>
       </Routes>
     </div>
   )

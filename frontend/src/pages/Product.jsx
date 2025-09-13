@@ -14,8 +14,6 @@ const Product = () => {
   const [productData, setProductData] = useState(false);
   const [image, setImage] = useState('');
   const [size, setSize] = useState('');
-
-  // New states for try-on modal
   const [showTryOnModal, setShowTryOnModal] = useState(false);
   const [uploadedImage, setUploadedImage] = useState(null);
   const [uploadedImageFile, setUploadedImageFile] = useState(null);
@@ -219,8 +217,6 @@ const Product = () => {
 
       </div>
       <Footer />
-      
-      {/* Try-On Modal */}
       {showTryOnModal && (
         <div className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm'>
           <div className='bg-white p-6 rounded-2xl shadow-2xl relative w-[90%] md:w-[70%] lg:w-[50%] animate-fade-in max-h-[90vh] overflow-y-auto'>

@@ -13,7 +13,6 @@ const Kids = () => {
   const [subCategory, setSubCategory] = useState([]);
   const [sortType, setSortType] = useState("relavent");
 
-  // toggle subcategory selection
   const toggleSubCategory = (e) => {
     if (subCategory.includes(e.target.value)) {
       setSubCategory((prev) => prev.filter((item) => item !== e.target.value));
@@ -22,7 +21,6 @@ const Kids = () => {
     }
   };
 
-  // apply filters (only KIDS products)
   const applyFilter = () => {
     let productsCopy = products.filter((item) => item.category === "Kids");
 
@@ -41,7 +39,6 @@ const Kids = () => {
     setFilterProducts(productsCopy);
   };
 
-  // sorting
   const sortProduct = () => {
     let fpCopy = filterProducts.slice();
 
@@ -71,8 +68,7 @@ const Kids = () => {
   return (
     <>
       <Navbar />
-      <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t">
-        {/* Filters */}
+      <div className="flex flex-col px-[10px] sm:flex-row gap-1 sm:gap-10 pt-10 border-t">
         <div className="min-w-60">
           <p
             onClick={() => setShowFilter(!showFilter)}
@@ -86,7 +82,6 @@ const Kids = () => {
             />
           </p>
 
-          {/* Subcategory filter */}
           <div
             className={`border border-gray-300 pl-5 py-3 my-5 ${
               showFilter ? "" : "hidden"
@@ -125,7 +120,6 @@ const Kids = () => {
           </div>
         </div>
 
-        {/* Products Section */}
         <div className="flex-1">
           <div className="flex justify-between text-base sm:text-2xl mb-4">
             <Title text1={"KIDS"} text2={"COLLECTIONS"} />

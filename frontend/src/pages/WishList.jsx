@@ -11,13 +11,13 @@ const WishList = () => {
 
   useEffect(() => {
     const bestProduct = products.filter((item) => item.bestseller)
-    setBestSeller(bestProduct) // show all bestseller products
+    setBestSeller(bestProduct)
   }, [products])
 
   return (
     <>
       <Navbar />
-      <div className="pt-10 border-t">
+      <div className="pt-10 px-[10px] border-t">
         <div className="flex justify-between items-center mb-6">
           <Title text1={'MY'} text2={'WISHLIST'} />
           <p className="text-gray-600 text-sm sm:text-base">
@@ -32,15 +32,12 @@ const WishList = () => {
                 key={index}
                 className="relative group border rounded-xl shadow-sm hover:shadow-md transition p-2"
               >
-                {/* Product Component */}
                 <ProductItem
                   id={item._id}
                   name={item.name}
                   price={item.price}
                   image={item.image}
                 />
-
-                {/* Wishlist heart overlay like Myntra */}
                 <button className="absolute top-2 right-2 bg-white p-1 rounded-full shadow-md opacity-80 hover:opacity-100">
                   <img
                     src="https://img.icons8.com/ios-glyphs/30/fa314a/like.png"

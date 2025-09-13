@@ -137,8 +137,6 @@ const WishRoom = () => {
         hd_mode: 'true'
       });
 
-      // Step 1: Create a try-on task
-      console.log("Submitting task to API...");
       const createResponse = await fetch(`${API_BASE_URL}/tasks`, {
         method: 'POST',
         headers: {
@@ -156,7 +154,6 @@ const WishRoom = () => {
       const taskId = createData.task_id;
       console.log("Task created. Task ID:", taskId);
 
-      // Step 2: Poll for the task status
       let downloadUrl = null;
       let status = null;
       console.log("Starting polling for task status...");
@@ -180,10 +177,8 @@ const WishRoom = () => {
         await new Promise(resolve => setTimeout(resolve, 2000));
       }
 
-      // Step 3: Set the final image URL
       if (downloadUrl) {
         setTryOnImage(downloadUrl);
-        console.log("Try-on image set. Process complete.");
       } else {
         console.error("Try-on failed: Could not get download URL from API.");
         alert("Try-on failed: Could not get download URL.");
@@ -257,7 +252,6 @@ const WishRoom = () => {
           </p>
         </div>
 
-        {/* Desktop Layout */}
         <div className="hidden md:flex w-full justify-center gap-12 mt-10 items-start">
           <div className="flex flex-col items-center w-1/5">
             <h2 className="font-bold text-pink-600 mb-3 text-lg border-b-2 border-pink-500 inline-block px-4">
@@ -340,8 +334,6 @@ const WishRoom = () => {
             </div>
           </div>
         </div>
-
-        {/* Mobile Layout */}
         <div className="flex flex-col md:hidden gap-6 mt-8">
           <div>
             <h2 className="font-bold text-pink-600 mb-2 text-base border-b-2 border-pink-500 inline-block px-2">
@@ -426,8 +418,6 @@ const WishRoom = () => {
             </div>
           </div>
         </div>
-
-        {/* Buttons */}
         <div className="flex justify-center gap-4 mt-10 mb-16">
           <button
             onClick={handleTryOn}

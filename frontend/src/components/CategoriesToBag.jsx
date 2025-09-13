@@ -1,6 +1,4 @@
 import React from "react";
-
-// Import 6 images
 import img1 from "../assets/images/c1.webp";
 import img2 from "../assets/images/c2.webp";
 import img3 from "../assets/images/c3.webp";

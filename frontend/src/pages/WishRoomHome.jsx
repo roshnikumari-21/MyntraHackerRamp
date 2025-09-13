@@ -3,8 +3,6 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import HowItWorks from "../components/HowItWorks";
 import { useNavigate } from "react-router-dom";
-
-// Replace with your images
 import img1 from "../assets/imageeee.png";
 import img2 from "../assets/imageeee2.png";
 import img3 from "../assets/download.gif";
@@ -23,8 +21,6 @@ const WishRoomHome = () => {
   const nextSlide = () => {
     setActiveIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   };
-
-  // Swipe detection
   let touchStartX = 0;
 
   const handleTouchStart = (e) => {
@@ -54,9 +50,7 @@ const WishRoomHome = () => {
     <>
       <Navbar />
 
-      {/* Hero Section */}
-      <div className="flex flex-col md:flex-row items-center justify-between px-6 sm:px-10 md:px-20 py-12 md:py-20">
-        {/* Left Side: Text */}
+      <div className="flex flex-col md:flex-row items-center justify-between px-6 sm:px-10 md:px-10 py-12 md:py-20">
         <div className="w-full md:w-1/2 text-center md:text-left mb-10 md:mb-0">
           <h3 className="text-gray-600 font-semibold uppercase tracking-[0.25em] text-base sm:text-lg md:text-xl">
             ✨ Introducing
@@ -84,7 +78,6 @@ const WishRoomHome = () => {
           </button>
         </div>
 
-        {/* Right Side: Carousel */}
         <div className="w-full md:w-1/2 flex flex-col items-center relative">
           <div
             className="relative w-[90%] sm:w-[400px] md:w-[520px] h-[320px] sm:h-[400px] md:h-[500px] flex justify-center items-center cursor-pointer"
@@ -129,7 +122,6 @@ const WishRoomHome = () => {
         </div>
       </div>
 
-      {/* Floating Scroll Button */}
       <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 flex flex-col items-center group">
         <span className="mb-1 sm:mb-2 text-xs sm:text-sm text-gray-700 text-center">
           Scroll to know more

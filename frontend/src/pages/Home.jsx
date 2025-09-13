@@ -1,4 +1,3 @@
-import React from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import Carousel from '../components/Carousel'
@@ -10,11 +9,13 @@ const Home = () => {
   return (
     <div>
       <Navbar/>
+    <div className = 'px-[20px]'>
       <Carousel/>
       <DealOfTheDay/>
       <CategoriesToBag/>
       <ColoursOfTheSeason/>
-      <Footer/>
+    </div>
+     <Footer/>
     </div>
   )
 }

@@ -17,12 +17,9 @@ const Navbar = () => {
 
   return (
     <div className="flex items-center justify-between py-3 px-6 shadow-sm border-b bg-white">
-      {/* Logo */}
       <Link to="/">
         <img src={assets.logo} className="w-[70px]" alt="logo" />
       </Link>
-
-      {/* Categories */}
       <ul className="hidden lg:flex gap-4 text-[13px] font-semibold text-gray-800">
        <NavLink 
   to="/WishRoomHome" 
@@ -41,10 +38,7 @@ const Navbar = () => {
         </NavLink>
          
       </ul>
-
-      {/* Search + Icons */}
       <div className="flex items-center gap-6">
-        {/* Search Bar */}
         <div
           className="hidden md:flex items-center rounded-md"
           onClick={() => {
@@ -54,8 +48,6 @@ const Navbar = () => {
         >
           <img src={assets.search_icon} className="w-6 mr-2" alt="search" />
         </div>
-
-        {/* Profile */}
         <div className="group relative">
           <img
             onClick={() => (token ? null : navigate("/login"))}
@@ -82,16 +74,12 @@ const Navbar = () => {
             </div>
           )}
         </div>
-
-        {/* Wishlist */}
         <Link to="/Wishlist" className="relative text-center">
         <div className="text-center cursor-pointer">
           <img src={assets.heart_icon} className="w-6 mx-auto" alt="wishlist" />
           <p className="text-xs text-gray-700 font-medium">Wishlist</p>
         </div>
         </Link>
-
-        {/* Bag */}
         <Link to="/cart" className="relative text-center">
           <img src={assets.cart_icon} className="w-6 mx-auto" alt="cart" />
           <p className="text-xs text-gray-700 font-medium">Bag</p>
@@ -101,8 +89,6 @@ const Navbar = () => {
             </span>
           )}
         </Link>
-
-        {/* Mobile Menu */}
         <img
           onClick={() => setVisible(true)}
           src={assets.menu_icon}
@@ -111,7 +97,6 @@ const Navbar = () => {
         />
       </div>
 
-      {/* Sidebar menu for small screens */}
       <div
         className={`fixed top-0 right-0 bottom-0 bg-white transition-all duration-300 shadow-md z-50 ${
           visible ? "w-64" : "w-0"
@@ -166,13 +151,6 @@ const Navbar = () => {
             to="/studio"
           >
             STUDIO
-          </NavLink>
-          <NavLink
-            onClick={() => setVisible(false)}
-            className="py-3 px-6 border-b hover:bg-gray-100"
-            to="/adminLogin"
-          >
-            ADMIN
           </NavLink>
         </div>
       </div>
