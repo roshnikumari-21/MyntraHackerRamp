@@ -26,7 +26,7 @@ const SearchBar = () => {
       <div className="p-[3px] rounded-full bg-gradient-to-r from-red-300 via-pink-300 via-orange-300 to-yellow-300 w-full max-w-2xl">
         <div className="relative flex items-center bg-white rounded-full px-4 sm:px-5 py-2 sm:py-2.5 w-full">
           <div className="flex items-center text-black justify-center mr-2 sm:mr-3 text-xl sm:text-2xl">
-            🧠
+            ✨
           </div>
           <input
             value={localSearch}
