@@ -70,9 +70,54 @@ const Collection = () => {
       setIsAiLoading(false);
     }
   };
+   const fetchRefinedTitlesFromAI = async (originalQuery, productTitles) => {
+    if (!originalQuery || !productTitles || productTitles.length === 0) {
+      setRefinedTitles([]);
+      return;
+    }
+    setIsRefining(true);
 
- 
+    const systemPrompt = "You are a highly discerning fashion expert. Given a list of product titles and an original search query, your task is to identify and return only the titles that are highly relevant to the query. Respond only with a JSON array of strings containing the relevant product titles.";
+    const userQuery = `Original query: "${originalQuery}". Products to filter: ${JSON.stringify(productTitles)}`;
 
+    const payload = {
+      contents: [{ parts: [{ text: userQuery }] }],
+      generationConfig: {
+        responseMimeType: "application/json",
+        responseSchema: {
+          type: "ARRAY",
+          items: {
+            type: "STRING",
+          },
+        },
+      },
+      systemInstruction: {
+        parts: [{ text: systemPrompt }]
+      },
+    };
+
+    try {
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json();
+      const refinedTitles = result.candidates?.[0]?.content?.parts?.[0]?.text;
+
+      if (refinedTitles) {
+        const parsedTitles = JSON.parse(refinedTitles);
+        setRefinedTitles(parsedTitles);
+      } else {
+        setRefinedTitles(productTitles);
+      }
+    } catch (error) {
+      setRefinedTitles(productTitles);
+    } finally {
+      setIsRefining(false);
+    }
+  };
   const toggleCategory = (e) => {
     if (category.includes(e.target.value)) {
         setCategory(prev=> prev.filter(item => item !== e.target.value))
