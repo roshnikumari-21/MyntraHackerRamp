@@ -33,7 +33,6 @@ const Cart = () => {
 
   return (
     <>
-    <Navbar/>
     <div className='border-t px-[20px] pt-14'>
 
       <div className=' text-2xl mb-3'>

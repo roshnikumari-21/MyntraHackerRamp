@@ -70,7 +70,6 @@ const Women = () => {
 
   return (
     <>
-      <Navbar />
       <div className="flex flex-col sm:flex-row gap-1 px-[10px] sm:gap-10 pt-10 border-t">
         <div className="min-w-60">
           <p

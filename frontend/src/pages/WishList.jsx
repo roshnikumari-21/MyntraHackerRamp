@@ -16,7 +16,6 @@ const WishList = () => {
 
   return (
     <>
-      <Navbar />
       <div className="pt-10 px-[10px] border-t">
         <div className="flex justify-between items-center mb-6">
           <Title text1={'MY'} text2={'WISHLIST'} />

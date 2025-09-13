@@ -13,6 +13,7 @@ import Orders from './pages/Orders'
 import WishRoom from './pages/WishRoom'
 import WishRoomHome from './pages/WishRoomHome'
 import SearchBar from './components/SearchBar'
+import Navbar from './components/Navbar'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import WishList from './pages/WishList'
@@ -21,6 +22,7 @@ const App = () => {
   return (
     <div>
       <ToastContainer />
+      <Navbar/>
       <SearchBar />
       <Routes>
         <Route path='/' element={<Home />} />

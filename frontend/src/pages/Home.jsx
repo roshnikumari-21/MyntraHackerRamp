@@ -8,7 +8,6 @@ import ColoursOfTheSeason from '../components/ColoursOfTheSeason'
 const Home = () => {
   return (
     <div>
-      <Navbar/>
     <div className = 'px-[20px]'>
       <Carousel/>
       <DealOfTheDay/>

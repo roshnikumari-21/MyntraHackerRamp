@@ -241,7 +241,6 @@ const WishRoom = () => {
 
   return (
     <>
-      <Navbar />
       <div className="min-h-screen relative pt-10 px-4 sm:px-6 lg:px-12">
         <div className="text-center mb-8">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold italic text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500">

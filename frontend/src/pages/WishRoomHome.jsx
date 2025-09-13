@@ -48,7 +48,6 @@ const WishRoomHome = () => {
 
   return (
     <>
-      <Navbar />
 
       <div className="flex flex-col md:flex-row items-center justify-between px-6 sm:px-10 md:px-10 py-12 md:py-20">
         <div className="w-full md:w-1/2 text-center md:text-left mb-10 md:mb-0">
