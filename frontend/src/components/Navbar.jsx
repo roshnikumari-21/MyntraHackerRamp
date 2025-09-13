@@ -5,8 +5,14 @@ import { assets } from "../assets/assets";
 
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
-  const { setShowSearch, getCartCount, navigate, token, setToken, setCartItems } =
-    useContext(ShopContext);
+  const {
+    setShowSearch,
+    getCartCount,
+    navigate,
+    token,
+    setToken,
+    setCartItems,
+  } = useContext(ShopContext);
 
   const logout = () => {
     navigate("/login");
@@ -16,29 +22,44 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex items-center justify-between py-3 px-6 shadow-sm border-b bg-white">
+    <div className="flex items-center justify-between py-3 px-4 shadow-sm border-b bg-white">
       <Link to="/">
-        <img src={assets.logo} className="w-[70px]" alt="logo" />
+        <img src={assets.logo} className="w-[60px]" alt="logo" />
       </Link>
-      <ul className="hidden lg:flex gap-4 text-[13px] font-semibold text-gray-800">
-       <NavLink 
-  to="/WishRoomHome" 
-  className="flex items-baseline gap-1 hover:text-pink-600 relative"
->
-  <span className="text-[10px] font-bold text-pink-500 absolute -top-2">WishList</span>
-  <span className="text-[14px] font-bold ml-6 text-gray-800">TryON</span>
-</NavLink>
 
-        <NavLink to="/men" className="hover:text-pink-600">MEN</NavLink>
-        <NavLink to="/women" className="hover:text-pink-600">WOMEN</NavLink>
-        <NavLink to="/kids" className="hover:text-pink-600">KIDS</NavLink>
-        <NavLink to="/genz" className="hover:text-pink-600">GENZ</NavLink>
-        <NavLink to="/studio" className="hover:text-pink-600 relative">
-          STUDIO <span className="absolute -top-2 -right-6 text-xs text-pink-500 font-bold">NEW</span>
+      <ul className="hidden lg:flex gap-3 text-[13px] font-semibold text-gray-800">
+        <NavLink
+          to="/WishRoomHome"
+          className="flex items-baseline gap-1 hover:text-pink-600 relative"
+        >
+          <span className="text-[10px] font-bold text-pink-500 absolute -top-2">
+            WishList
+          </span>
+          <span className="text-[14px] font-bold ml-6 text-gray-800">
+            TryON
+          </span>
         </NavLink>
-         
+        <NavLink to="/men" className="hover:text-pink-600">
+          MEN
+        </NavLink>
+        <NavLink to="/women" className="hover:text-pink-600">
+          WOMEN
+        </NavLink>
+        <NavLink to="/kids" className="hover:text-pink-600">
+          KIDS
+        </NavLink>
+        <NavLink to="/genz" className="hover:text-pink-600">
+          GENZ
+        </NavLink>
+        <NavLink to="/studio" className="hover:text-pink-600 relative">
+          SWYFT{" "}
+          <span className="absolute -top-2 -right-5 text-xs text-pink-500 font-bold">
+            NEW
+          </span>
+        </NavLink>
       </ul>
-      <div className="flex items-center gap-6">
+
+      <div className="flex items-center gap-4">
         <div
           className="hidden md:flex items-center rounded-md"
           onClick={() => {
@@ -46,16 +67,18 @@ const Navbar = () => {
             navigate("/collection");
           }}
         >
-          <img src={assets.search_icon} className="w-6 mr-2" alt="search" />
+          <img src={assets.search_icon} className="w-5 mr-2" alt="search" />
         </div>
         <div className="group relative">
           <img
             onClick={() => (token ? null : navigate("/login"))}
             src={assets.profile_icon}
-            className="w-6 cursor-pointer"
+            className="w-5 cursor-pointer"
             alt="profile"
           />
-          <p className="text-xs text-gray-700 font-medium text-center">Profile</p>
+          <p className="text-xs text-gray-700 font-medium text-center">
+            Profile
+          </p>
 
           {token && (
             <div className="hidden group-hover:block absolute right-0 mt-2 w-36 py-3 px-5 bg-white border rounded shadow-md">
@@ -75,13 +98,17 @@ const Navbar = () => {
           )}
         </div>
         <Link to="/Wishlist" className="relative text-center">
-        <div className="text-center cursor-pointer">
-          <img src={assets.heart_icon} className="w-6 mx-auto" alt="wishlist" />
-          <p className="text-xs text-gray-700 font-medium">Wishlist</p>
-        </div>
+          <div className="text-center cursor-pointer">
+            <img
+              src={assets.heart_icon}
+              className="w-5 mx-auto"
+              alt="wishlist"
+            />
+            <p className="text-xs text-gray-700 font-medium">Wishlist</p>
+          </div>
         </Link>
         <Link to="/cart" className="relative text-center">
-          <img src={assets.cart_icon} className="w-6 mx-auto" alt="cart" />
+          <img src={assets.cart_icon} className="w-5 mx-auto" alt="cart" />
           <p className="text-xs text-gray-700 font-medium">Bag</p>
           {getCartCount() > 0 && (
             <span className="absolute top-0 right-0 bg-red-500 text-white text-[10px] w-5 h-5 flex items-center justify-center rounded-full">
@@ -92,7 +119,7 @@ const Navbar = () => {
         <img
           onClick={() => setVisible(true)}
           src={assets.menu_icon}
-          className="w-6 cursor-pointer lg:hidden"
+          className="w-5 cursor-pointer lg:hidden"
           alt="menu"
         />
       </div>
