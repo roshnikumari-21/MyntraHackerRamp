@@ -41,7 +41,6 @@ const Navbar = () => {
             TryON
           </span>
         </NavLink>
-
         <NavLink to="/men" className="hover:text-pink-600">
           MEN
         </NavLink>
@@ -55,8 +54,8 @@ const Navbar = () => {
           GENZ
         </NavLink>
         <NavLink to="/studio" className="hover:text-pink-600 relative">
-          STUDIO{" "}
-          <span className="absolute -top-2 -right-6 text-xs text-pink-500 font-bold">
+          SWYFT{" "}
+          <span className="absolute -top-2 -right-5 text-xs text-pink-500 font-bold">
             NEW
           </span>
         </NavLink>

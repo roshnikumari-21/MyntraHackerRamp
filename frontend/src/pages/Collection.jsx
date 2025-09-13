@@ -57,6 +57,7 @@ const Collection = () => {
       
       if (keywords) {
         const parsedKeywords = JSON.parse(keywords);
+        
         setAiKeywords(parsedKeywords);
       } else {
         setAiKeywords([]);
