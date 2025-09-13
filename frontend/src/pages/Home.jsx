@@ -10,9 +10,9 @@ const Home = () => {
     <div>
     <div className = 'px-[20px]'>
       <Carousel/>
+      <ColoursOfTheSeason/>
       <DealOfTheDay/>
       <CategoriesToBag/>
-      <ColoursOfTheSeason/>
     </div>
      <Footer/>
     </div>

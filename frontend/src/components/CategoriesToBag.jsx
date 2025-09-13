@@ -26,12 +26,17 @@ const CategoriesToBag = () => {
             key={i}
             className="flex flex-col items-center cursor-pointer group"
           >
-            <div className="w-60 h-60 overflow-hidden border-1 border-transparent group-hover:border-blue-500 transition">
+            {/* Responsive Image Box */}
+            <div className="w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 overflow-hidden border border-transparent group-hover:border-blue-500 transition">
               <img
                 src={cat.img}
+                alt={cat.name}
                 className="w-full h-full object-cover"
               />
             </div>
+
+            {/* Category Name */}
+            <p className="mt-2 text-sm sm:text-base font-medium">{cat.name}</p>
           </div>
         ))}
       </div>
@@ -40,3 +45,4 @@ const CategoriesToBag = () => {
 };
 
 export default CategoriesToBag;
+

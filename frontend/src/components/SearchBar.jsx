@@ -31,7 +31,7 @@ const SearchBar = () => {
           <input
             value={localSearch}
             onChange={(e) => setLocalSearch(e.target.value)}
-            className="flex-1 bg-transparent text-black font-bold placeholder-black placeholder:font-bold text-sm sm:text-base focus:ring-0 border-none outline-none"
+            className="flex-1 bg-transparent text-black placeholder:font-mono placeholder-black  text-sm sm:text-base focus:ring-0 border-none outline-none"
             type="text"
             placeholder="Vibe Search..."
           />
