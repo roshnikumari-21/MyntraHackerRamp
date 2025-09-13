@@ -6,6 +6,7 @@ import Men from './pages/Men'
 import Women from './pages/Women'
 import Kids from './pages/Kids'
 import Product from './pages/Product'
+import Swyft from './pages/Swyft'
 import Cart from './pages/Cart'
 import Login from './pages/Login'
 import PlaceOrder from './pages/PlaceOrder'
@@ -32,6 +33,7 @@ const App = () => {
         <Route path='/men' element = {<Men/>}/>
         <Route path='/women' element = {<Women/>}/>
         <Route path='/kids' element = {<Kids/>}/>
+         <Route path='/swyft' element = {<Swyft/>}/>
         <Route path='/login' element={<Login />} />
         <Route path='/place-order' element={<PlaceOrder />} />
         <Route path='/orders' element={<Orders />} />

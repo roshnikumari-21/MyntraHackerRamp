@@ -51,7 +51,7 @@ const Navbar = () => {
         <NavLink to="/genz" className="hover:text-pink-600">
           GENZ
         </NavLink>
-        <NavLink to="/studio" className="hover:text-pink-600 relative">
+        <NavLink to="/swyft" className="hover:text-pink-600 relative">
           SWYFT{" "}
           <span className="absolute -top-2 -right-5 text-xs text-pink-500 font-bold">
             NEW
