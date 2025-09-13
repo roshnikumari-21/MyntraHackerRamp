@@ -7,7 +7,6 @@ import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 
 const Collection = () => {
-
   const { products , search , showSearch } = useContext(ShopContext);
   const [showFilter,setShowFilter] = useState(false);
   const [filterProducts,setFilterProducts] = useState([]);
@@ -18,10 +17,8 @@ const Collection = () => {
   const [isAiLoading, setIsAiLoading] = useState(false);
   const [refinedTitles, setRefinedTitles] = useState([]);
   const [isRefining, setIsRefining] = useState(false);
-
   const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
   const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${API_KEY}`;
-
   const fetchKeywordsFromAI = async (query) => {
     if (!query) {
       setAiKeywords([]);
@@ -76,10 +73,8 @@ const Collection = () => {
       return;
     }
     setIsRefining(true);
-
     const systemPrompt = "You are a highly discerning fashion expert. Given a list of product titles and an original search query, your task is to identify and return only the titles that are highly relevant to the query. Respond only with a JSON array of strings containing the relevant product titles.";
     const userQuery = `Original query: "${originalQuery}". Products to filter: ${JSON.stringify(productTitles)}`;
-
     const payload = {
       contents: [{ parts: [{ text: userQuery }] }],
       generationConfig: {
@@ -95,7 +90,6 @@ const Collection = () => {
         parts: [{ text: systemPrompt }]
       },
     };
-
     try {
       const response = await fetch(apiUrl, {
         method: 'POST',
@@ -125,7 +119,6 @@ const Collection = () => {
       setCategory(prev => [...prev, e.target.value])
     }
   }
-
   const toggleSubCategory = (e) => {
     if (subCategory.includes(e.target.value)) {
       setSubCategory(prev=> prev.filter(item => item !== e.target.value))
@@ -133,7 +126,6 @@ const Collection = () => {
       setSubCategory(prev => [...prev, e.target.value])
     }
   }
-
   const applyFiltersAndSort = () => {
     let productsCopy = products.slice();
     if (showSearch && aiKeywords.length > 0) {
@@ -233,9 +225,7 @@ const Collection = () => {
           </div>
         </div>
       </div>
-
       <div className='flex-1'>
-
         <div className='flex justify-between text-base sm:text-2xl mb-4'>
             <Title text1={'ALL'} text2={'COLLECTIONS'} />
             <select onChange={(e)=>setSortType(e.target.value)} className='border-2 border-gray-300 text-sm px-2'>
@@ -258,12 +248,10 @@ const Collection = () => {
           }
         </div>
       </div>
-
     </div>
     <Footer/>
     </>
   )
 }
-
 export default Collection
 
