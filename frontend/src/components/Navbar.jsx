@@ -37,7 +37,7 @@ const Navbar = () => {
           <span className="text-[10px] font-bold text-pink-500 absolute -top-2">
             Style
           </span>
-          <span className="text-[14px] font-bold ml-6 text-gray-800">SYNC</span>
+          <span className="text-[14px] ml-6 text-gray-800">SYNC</span>
         </NavLink>
         <NavLink to="/men" className="hover:text-pink-600">MEN</NavLink>
         <NavLink to="/women" className="hover:text-pink-600">WOMEN</NavLink>

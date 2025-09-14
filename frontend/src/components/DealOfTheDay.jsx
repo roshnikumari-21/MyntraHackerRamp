@@ -47,20 +47,13 @@ const DealOfTheDay = () => {
         {deals.map((deal, i) => (
           <div
             key={i}
-            className="bg-white shadow hover:shadow-lg transition rounded-lg overflow-hidden cursor-pointer"
+            className=" shadow hover:shadow-lg transition cursor-pointer"
           >
             <img
               src={deal.img}
               alt={deal.title}
-              className="w-full h-[220px] object-cover"
+              className="w-full h-[230px] object-contain"
             />
-            <div className="p-4">
-              <h3 className="text-sm font-medium text-gray-500">{deal.title}</h3>
-              <p className="text-lg font-bold text-gray-900">{deal.offer}</p>
-              {deal.desc && (
-                <p className="text-xs text-gray-500 mt-1">{deal.desc}</p>
-              )}
-            </div>
           </div>
         ))}
       </div>
