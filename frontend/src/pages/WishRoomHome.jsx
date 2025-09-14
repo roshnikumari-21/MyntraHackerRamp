@@ -49,7 +49,7 @@ const WishRoomHome = () => {
   return (
     <>
 
-      <div className="flex flex-col md:flex-row items-center justify-between px-6 sm:px-10 md:px-10 py-12 md:py-20">
+      <div className="flex flex-col md:flex-row items-center justify-between mx-6 sm:mx-8 md:mx-12 px-6 sm:px-10 md:px-10 py-12 md:py-20">
         <div className="w-full md:w-1/2 text-center md:text-left mb-10 md:mb-0">
           <h3 className="text-gray-600 font-semibold uppercase tracking-[0.25em] text-base sm:text-lg md:text-xl">
             ✨ Introducing

@@ -4,13 +4,14 @@ import { Camera, RefreshCcw, Download, Heart, Upload, Search, Sparkles, Wand2 } 
 import { ShopContext } from "../context/ShopContext";
 
 const WishRoom = () => {
-  const { products, addMultipleToCart, isItemInWishlist } = useContext(ShopContext);
+  const { products, addMultipleToCart ,recommendedItems } = useContext(ShopContext);
   const [uploadedImage, setUploadedImage] = useState(null);
   const [uploadedImageFile, setUploadedImageFile] = useState(null);
   const [selectedTop, setSelectedTop] = useState(null);
   const [selectedBottom, setSelectedBottom] = useState(null);
   const [tryOnImage, setTryOnImage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [triggerAiSearch, setTriggerAiSearch] = useState(false);
   const [topSearchQuery, setTopSearchQuery] = useState('');
   const [bottomSearchQuery, setBottomSearchQuery] = useState('');
   const [aiSearchQuery, setAiSearchQuery] = useState('');
@@ -24,10 +25,10 @@ const WishRoom = () => {
 
   const FITROOM_API_KEY = import.meta.env.VITE_API_KEY;
   const API_BASE_URL = 'https://platform.fitroom.app/api/tryon/v2';
-
   const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
   const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${API_KEY}`;
-  const allTops = products.filter(
+ 
+ const allTops = products.filter(
     (item) => item.subCategory === "Topwear"
   );
   const allBottoms = products.filter(
@@ -130,58 +131,63 @@ const WishRoom = () => {
   };
 
 
-  const getFilteredTops = () => {
-    let filtered = allTops;
+const getFilteredTops = () => {
+  let filtered = allTops;
+  if (activeMode === "Wishlist") {
+    filtered = filtered.filter(item => item.bestseller);
+  } else if (activeMode === "Search") {
+    filtered = filtered.filter(item => 
+      item.name.toLowerCase().includes(topSearchQuery.toLowerCase())
+    );
+  } else if (activeMode === "AI Search") {
+    if (isAiLoading || isRefining) {
+      return [];
+    }
+    if (refinedTitles.length > 0) {
+      filtered = filtered.filter(item => refinedTitles.includes(item.name) && item.subCategory === "Topwear");
+    } else if (aiKeywords.length > 0) {
+      filtered = filtered.filter(item =>
+        aiKeywords.some(keyword =>
+          item.name.toLowerCase().includes(keyword.toLowerCase()) ||
+          (item.description && item.description.toLowerCase().includes(keyword.toLowerCase()))
+        )
+      );
+    }
+  } else if (activeMode === "Recommendations") {
+    // New logic for recommendations mode
+    filtered = recommendedItems.filter(item => item.subCategory === "Topwear");
+  }
 
-    if (activeMode === "Wishlist") {
-      filtered = filtered.filter(item => item.bestseller);
-    } else if (activeMode === "Search") {
-      filtered = filtered.filter(item => 
-        item.name.toLowerCase().includes(topSearchQuery.toLowerCase())
-      );
-    } else if (activeMode === "AI Search") {
-      if (isAiLoading || isRefining) {
-        return [];
-      }
-      if (refinedTitles.length > 0) {
-        filtered = filtered.filter(item => refinedTitles.includes(item.name) && item.subCategory === "Topwear");
-      } else if (aiKeywords.length > 0) {
-        filtered = filtered.filter(item =>
-          aiKeywords.some(keyword =>
-            item.name.toLowerCase().includes(keyword.toLowerCase()) ||
-            (item.description && item.description.toLowerCase().includes(keyword.toLowerCase()))
-          )
-        );
-      }
-    }
-    return filtered;
-  };
-
-  const getFilteredBottoms = () => {
-    let filtered = allBottoms;
-    if (activeMode === "Wishlist") {
-      filtered = filtered.filter(item => item.bestseller);
-    } else if (activeMode === "Search") {
-      filtered = filtered.filter(item => 
-        item.name.toLowerCase().includes(bottomSearchQuery.toLowerCase())
-      );
-    } else if (activeMode === "AI Search") {
-      if (isAiLoading || isRefining) {
-        return [];
-      }
-      if (refinedTitles.length > 0) {
-        filtered = filtered.filter(item => refinedTitles.includes(item.name) && item.subCategory === "Bottomwear");
-      } else if (aiKeywords.length > 0) {
-        filtered = filtered.filter(item =>
-          aiKeywords.some(keyword =>
-            item.name.toLowerCase().includes(keyword.toLowerCase()) ||
-            (item.description && item.description.toLowerCase().includes(keyword.toLowerCase()))
-          )
-        );
-      }
-    }
-    return filtered;
-  };
+  return filtered;
+};
+const getFilteredBottoms = () => {
+  let filtered = allBottoms;
+  if (activeMode === "Wishlist") {
+    filtered = filtered.filter(item => item.bestseller);
+  } else if (activeMode === "Search") {
+    filtered = filtered.filter(item => 
+      item.name.toLowerCase().includes(bottomSearchQuery.toLowerCase())
+    );
+  } else if (activeMode === "AI Search") {
+    if (isAiLoading || isRefining) {
+      return [];
+    }
+    if (refinedTitles.length > 0) {
+      filtered = filtered.filter(item => refinedTitles.includes(item.name) && item.subCategory === "Bottomwear");
+    } else if (aiKeywords.length > 0) {
+      filtered = filtered.filter(item =>
+        aiKeywords.some(keyword =>
+          item.name.toLowerCase().includes(keyword.toLowerCase()) ||
+          (item.description && item.description.toLowerCase().includes(keyword.toLowerCase()))
+        )
+      );
+    }
+  } else if (activeMode === "Recommendations") {
+    // New logic for recommendations mode
+    filtered = recommendedItems.filter(item => item.subCategory === "Bottomwear");
+  }
+  return filtered;
+};
 
   const filteredTops = getFilteredTops();
   const filteredBottoms = getFilteredBottoms();
@@ -231,31 +237,39 @@ const WishRoom = () => {
     }
   }, [products, selectedTop, selectedBottom, allBottoms, allTops]);
 
-  useEffect(() => {
-    if (activeMode === "AI Search" && aiSearchQuery) {
-      fetchKeywordsFromAI(aiSearchQuery);
-    } else {
-      setAiKeywords([]);
-    }
-  }, [aiSearchQuery, activeMode]);
+useEffect(() => {
+  const runAiSearch = async () => {
+    if (!triggerAiSearch) return;
 
-  useEffect(() => {
-    if (activeMode === "AI Search" && aiKeywords.length > 0) {
-      const initialFilteredTitles = products
-        .filter(item => 
-          aiKeywords.some(keyword => 
-            item.name.toLowerCase().includes(keyword.toLowerCase()) || 
-            (item.description && item.description.toLowerCase().includes(keyword.toLowerCase()))
-          )
-        )
-        .map(item => item.name);
-      
-      fetchRefinedTitlesFromAI(aiSearchQuery, initialFilteredTitles);
-    } else {
-      setRefinedTitles([]);
-    }
-  }, [aiKeywords, aiSearchQuery, activeMode, products]);
+    // Step 1: Fetch keywords
+    if (aiSearchQuery) {
+      await fetchKeywordsFromAI(aiSearchQuery);
+    } else {
+      setAiKeywords([]);
+    }
 
+    // Step 2: Refine titles using the newly fetched keywords
+    if (aiKeywords.length > 0) {
+      const initialFilteredTitles = products
+        .filter(item =>
+          aiKeywords.some(keyword =>
+            item.name.toLowerCase().includes(keyword.toLowerCase()) ||
+            (item.description && item.description.toLowerCase().includes(keyword.toLowerCase()))
+          )
+        )
+        .map(item => item.name);
+
+      await fetchRefinedTitlesFromAI(aiSearchQuery, initialFilteredTitles);
+    } else {
+      setRefinedTitles([]);
+    }
+
+    // Reset the trigger so the search doesn't re-run
+    setTriggerAiSearch(false);
+  };
+
+  runAiSearch();
+}, [triggerAiSearch, aiSearchQuery, products, activeMode, aiKeywords]);
 
   const handleAddBothToCart = () => {
     console.log("Add both to cart button clicked.");
@@ -542,21 +556,29 @@ const WishRoom = () => {
         </div>
         
         {/* AI Search Bar */}
-        {activeMode === "AI Search" && (
-          <div className="flex justify-center mb-6 px-4">
-            <div className='flex items-center bg-gray-100 rounded-full w-full max-w-lg px-4 py-2 shadow-inner'>
-              <Search size={20} className="text-gray-500" />
-              <input
-                type="text"
-                value={aiSearchQuery}
-                onChange={(e) => setAiSearchQuery(e.target.value)}
-                placeholder="Describe the style or mood you want..."
-                className="flex-1 outline-none bg-inherit text-sm text-gray-700 placeholder-gray-400 ml-2"
-                ref={aiSearchInputRef}
-              />
-            </div>
-          </div>
-        )}
+        {/* AI Search Bar */}
+{activeMode === "AI Search" && (
+  <div className="flex justify-center mb-6 px-4">
+    <div className='flex items-center bg-gray-100 rounded-full w-full max-w-lg px-4 py-2 shadow-inner'>
+      <Search size={20} className="text-gray-500" />
+      <input
+        type="text"
+        value={aiSearchQuery}
+        onChange={(e) => setAiSearchQuery(e.target.value)}
+        placeholder="Describe the style or mood you want..."
+        className="flex-1 outline-none bg-inherit text-sm text-gray-700 placeholder-gray-400 ml-2"
+        ref={aiSearchInputRef}
+      />
+      {/* Add the search button here */}
+      <button
+       onClick={() => setTriggerAiSearch(true)}
+        className="p-2 ml-2 bg-pink-500 text-white rounded-full hover:bg-pink-600 transition-colors"
+      >
+        <Search size={16} />
+      </button>
+    </div>
+  </div>
+)}
 
         {/* Desktop Layout */}
         <div className="hidden md:flex w-full justify-center gap-12 mt-10 items-start">
