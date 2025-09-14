@@ -26,7 +26,7 @@ const Collection = () => {
     }
     setIsAiLoading(true);
 
-    const systemPrompt = "You are an expert fashion stylist. Based on the user's query, provide a list of relevant keywords to filter products by. Include categories, materials, and styles. Respond only with a JSON array of strings.";
+    const systemPrompt = "You are an expert fashion stylist: given the user’s query (such as a festival, season, event, or occasion), generate a list of highly relevant shopping keywords that can be used to filter products: the keywords should cover categories, materials, styles, and accessories where applicable, and must remain concise, fashion- and lifestyle-focused: respond strictly in JSON array format containing strings only, with no explanations";
     const userQuery = `Generate keywords for: "${query}"`;
     
     const payload = {
