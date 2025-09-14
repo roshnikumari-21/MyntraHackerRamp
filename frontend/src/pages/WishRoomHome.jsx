@@ -57,10 +57,10 @@ const WishRoomHome = () => {
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mt-4 leading-tight">
             <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500 bg-clip-text text-transparent drop-shadow-lg">
-              WishList
+              Style
             </span>{" "}
             <span className="text-gray-900 font-black drop-shadow-md">
-              TryON
+              Sync
             </span>
           </h1>
 

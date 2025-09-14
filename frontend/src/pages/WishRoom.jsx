@@ -1,18 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
-import { ShopContext } from "../context/ShopContext";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { Camera, RefreshCcw, Download } from "lucide-react";
+import { Camera, RefreshCcw, Download, Heart } from "lucide-react";
+import { ShopContext } from "../context/ShopContext";
 
 const WishRoom = () => {
-  const { products, addMultipleToCart } = useContext(ShopContext);
-
-  const bestsellerTops = products.filter(
-    (item) => item.subCategory === "Topwear" && item.bestseller
-  );
-  const bestsellerBottoms = products.filter(
-    (item) => item.subCategory === "Bottomwear" && item.bestseller
-  );
+  const { products, addMultipleToCart, isItemInWishlist } = useContext(ShopContext);
 
   const [uploadedImage, setUploadedImage] = useState(null);
   const [uploadedImageFile, setUploadedImageFile] = useState(null);
@@ -20,9 +13,32 @@ const WishRoom = () => {
   const [selectedBottom, setSelectedBottom] = useState(null);
   const [tryOnImage, setTryOnImage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [topSearchQuery, setTopSearchQuery] = useState('');
+  const [bottomSearchQuery, setBottomSearchQuery] = useState('');
+  const [showWishlistTops, setShowWishlistTops] = useState(false);
+  const [showWishlistBottoms, setShowWishlistBottoms] = useState(false);
 
-  const API_KEY = import.meta.VITE_API_KEY;
+  const API_KEY = import.meta.env.VITE_API_KEY;
   const API_BASE_URL = 'https://platform.fitroom.app/api/tryon/v2';
+
+  const allTops = products.filter(
+    (item) => item.subCategory === "Topwear"
+  );
+  const allBottoms = products.filter(
+    (item) => item.subCategory === "Bottomwear"
+  );
+
+  const filteredTops = allTops.filter(item => {
+    const matchesSearch = item.name.toLowerCase().includes(topSearchQuery.toLowerCase());
+    const matchesWishlist = !showWishlistTops || ( item.bestseller);
+    return matchesSearch && matchesWishlist;
+  });
+
+  const filteredBottoms = allBottoms.filter(item => {
+    const matchesSearch = item.name.toLowerCase().includes(bottomSearchQuery.toLowerCase());
+    const matchesWishlist = !showWishlistBottoms || ( item.bestseller);
+    return matchesSearch && matchesWishlist;
+  });
 
   const handleUpload = (e) => {
     console.log("handleUpload called.");
@@ -59,15 +75,15 @@ const WishRoom = () => {
   };
 
   useEffect(() => {
-    if (bestsellerTops.length > 0 && !selectedTop) {
-      console.log("Setting default top product:", bestsellerTops[0]._id);
-      setSelectedTop(bestsellerTops[0]._id);
+    if (allTops.length > 0 && !selectedTop) {
+      console.log("Setting default top product:", allTops[0]._id);
+      setSelectedTop(allTops[0]._id);
     }
-    if (bestsellerBottoms.length > 0 && !selectedBottom) {
-      console.log("Setting default bottom product:", bestsellerBottoms[0]._id);
-      setSelectedBottom(bestsellerBottoms[0]._id);
+    if (allBottoms.length > 0 && !selectedBottom) {
+      console.log("Setting default bottom product:", allBottoms[0]._id);
+      setSelectedBottom(allBottoms[0]._id);
     }
-  }, [products, selectedTop, selectedBottom, bestsellerBottoms, bestsellerTops]);
+  }, [products, selectedTop, selectedBottom, allBottoms, allTops]);
 
   const handleAddBothToCart = () => {
     console.log("Add both to cart button clicked.");
@@ -244,20 +260,40 @@ const WishRoom = () => {
       <div className="min-h-screen relative pt-10 px-4 sm:px-6 lg:px-12">
         <div className="text-center mb-8">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold italic text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500">
-            Wishlist TryOn
+            Style Sync
           </h1>
           <p className="text-gray-500 mt-2 text-sm sm:text-base italic">
-            Try on your <span className="text-pink-500 font-medium">wishlist</span> virtually before you buy
+            Try on your <span className="text-pink-500 font-medium">outfits</span> virtually before you buy
           </p>
         </div>
 
+        {/* Desktop Layout */}
         <div className="hidden md:flex w-full justify-center gap-12 mt-10 items-start">
           <div className="flex flex-col items-center w-1/5">
-            <h2 className="font-bold text-pink-600 mb-3 text-lg border-b-2 border-pink-500 inline-block px-4">
-              Tops
-            </h2>
+            <div className="flex justify-between items-center w-full mb-3">
+              <h2 className="font-bold text-pink-600 text-lg border-b-2 border-pink-500 inline-block px-4">
+                Tops
+              </h2>
+              <button 
+                onClick={() => setShowWishlistTops(!showWishlistTops)}
+                className={`p-2 rounded-full transition-colors duration-300 ${
+                  showWishlistTops ? 'bg-pink-100 text-pink-600' : 'text-gray-400 hover:bg-gray-100'
+                }`}
+              >
+                <Heart size={20} fill={showWishlistTops ? 'currentColor' : 'none'} />
+              </button>
+            </div>
+            <div className='flex items-center bg-gray-100 rounded-full w-full px-4 py-2 mb-3'>
+              <input
+                type="text"
+                value={topSearchQuery}
+                onChange={(e) => setTopSearchQuery(e.target.value)}
+                placeholder="Search tops..."
+                className="flex-1 outline-none bg-inherit text-sm text-gray-700 placeholder-gray-400"
+              />
+            </div>
             <div className="h-[480px] w-full p-4 rounded-2xl bg-pink-50 shadow-[0_10px_25px_rgba(0,0,0,0.3)] overflow-y-auto hide-scrollbar scroll-smooth">
-              {bestsellerTops.map((item) => (
+              {filteredTops.map((item) => (
                 <ProductCard
                   key={item._id}
                   item={item}
@@ -315,11 +351,30 @@ const WishRoom = () => {
           </div>
 
           <div className="flex flex-col items-center w-1/5">
-            <h2 className="font-semibold text-pink-600 mb-3 text-lg border-b-2 border-pink-500 inline-block px-4">
-              Bottoms
-            </h2>
+            <div className="flex justify-between items-center w-full mb-3">
+              <h2 className="font-semibold text-pink-600 text-lg border-b-2 border-pink-500 inline-block px-4">
+                Bottoms
+              </h2>
+              <button 
+                onClick={() => setShowWishlistBottoms(!showWishlistBottoms)}
+                className={`p-2 rounded-full transition-colors duration-300 ${
+                  showWishlistBottoms ? 'bg-pink-100 text-pink-600' : 'text-gray-400 hover:bg-gray-100'
+                }`}
+              >
+                <Heart size={20} fill={showWishlistBottoms ? 'currentColor' : 'none'} />
+              </button>
+            </div>
+            <div className='flex items-center bg-gray-100 rounded-full w-full px-4 py-2 mb-3'>
+              <input
+                type="text"
+                value={bottomSearchQuery}
+                onChange={(e) => setBottomSearchQuery(e.target.value)}
+                placeholder="Search bottoms..."
+                className="flex-1 outline-none bg-inherit text-sm text-gray-700 placeholder-gray-400"
+              />
+            </div>
             <div className="h-[480px] w-full p-4 rounded-2xl bg-pink-50 shadow-[0_10px_25px_rgba(0,0,0,0.3)] overflow-y-auto hide-scrollbar scroll-smooth">
-              {bestsellerBottoms.map((item) => (
+              {filteredBottoms.map((item) => (
                 <ProductCard
                   key={item._id}
                   item={item}
@@ -333,13 +388,34 @@ const WishRoom = () => {
             </div>
           </div>
         </div>
+        
+        {/* Mobile Layout */}
         <div className="flex flex-col md:hidden gap-6 mt-8">
           <div>
-            <h2 className="font-bold text-pink-600 mb-2 text-base border-b-2 border-pink-500 inline-block px-2">
-              Tops
-            </h2>
+            <div className="flex justify-between items-center w-full mb-2">
+              <h2 className="font-bold text-pink-600 text-base border-b-2 border-pink-500 inline-block px-2">
+                Tops
+              </h2>
+              <button 
+                onClick={() => setShowWishlistTops(!showWishlistTops)}
+                className={`p-1 rounded-full transition-colors duration-300 ${
+                  showWishlistTops ? 'bg-pink-100 text-pink-600' : 'text-gray-400 hover:bg-gray-100'
+                }`}
+              >
+                <Heart size={16} fill={showWishlistTops ? 'currentColor' : 'none'} />
+              </button>
+            </div>
+            <div className='flex items-center bg-gray-100 rounded-full w-full px-3 py-2 mb-2'>
+              <input
+                type="text"
+                value={topSearchQuery}
+                onChange={(e) => setTopSearchQuery(e.target.value)}
+                placeholder="Search tops..."
+                className="flex-1 outline-none bg-inherit text-xs text-gray-700 placeholder-gray-400"
+              />
+            </div>
             <div className="flex gap-3 overflow-x-auto hide-scrollbar scroll-smooth py-2">
-              {bestsellerTops.map((item) => (
+              {filteredTops.map((item) => (
                 <ProductCard
                   key={item._id}
                   item={item}
@@ -398,11 +474,30 @@ const WishRoom = () => {
           </div>
 
           <div>
-            <h2 className="font-semibold text-pink-600 mb-2 text-base border-b-2 border-pink-500 inline-block px-2">
-              Bottoms
-            </h2>
+            <div className="flex justify-between items-center w-full mb-2">
+              <h2 className="font-semibold text-pink-600 text-base border-b-2 border-pink-500 inline-block px-2">
+                Bottoms
+              </h2>
+              <button 
+                onClick={() => setShowWishlistBottoms(!showWishlistBottoms)}
+                className={`p-1 rounded-full transition-colors duration-300 ${
+                  showWishlistBottoms ? 'bg-pink-100 text-pink-600' : 'text-gray-400 hover:bg-gray-100'
+                }`}
+              >
+                <Heart size={16} fill={showWishlistBottoms ? 'currentColor' : 'none'} />
+              </button>
+            </div>
+            <div className='flex items-center bg-gray-100 rounded-full w-full px-3 py-2 mb-2'>
+              <input
+                type="text"
+                value={bottomSearchQuery}
+                onChange={(e) => setBottomSearchQuery(e.target.value)}
+                placeholder="Search bottoms..."
+                className="flex-1 outline-none bg-inherit text-xs text-gray-700 placeholder-gray-400"
+              />
+            </div>
             <div className="flex gap-3 overflow-x-auto hide-scrollbar scroll-smooth py-2">
-              {bestsellerBottoms.map((item) => (
+              {filteredBottoms.map((item) => (
                 <ProductCard
                   key={item._id}
                   item={item}
@@ -417,6 +512,7 @@ const WishRoom = () => {
             </div>
           </div>
         </div>
+
         <div className="flex justify-center gap-4 mt-10 mb-16">
           <button
             onClick={handleTryOn}
