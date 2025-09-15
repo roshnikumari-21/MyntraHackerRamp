@@ -2,6 +2,7 @@ import { useContext, useState, useEffect, useRef } from "react";
 import Footer from "../components/Footer";
 import { Camera, RefreshCcw, Download, Heart, Upload, Search, Sparkles, Wand2 } from "lucide-react";
 import { ShopContext } from "../context/ShopContext";
+import {assets} from '../assets/assets'
 
 const WishRoom = () => {
   const { products, addMultipleToCart ,recommendedItems } = useContext(ShopContext);
@@ -625,7 +626,7 @@ useEffect(() => {
             <h2 className="font-semibold text-pink-600 mb-3 text-lg border-b-2 border-pink-500 inline-block px-4">
               Try-On Room
             </h2>
-            <div className="flex flex-col items-center justify-center w-full h-[600px] border-2 border-dashed border-pink-300 rounded-xl bg-white shadow-md text-center p-6 relative">
+            <div className="flex flex-col items-center justify-center w-full h-[530px] border-8 border-double border-pink-300 rounded-xl bg-white shadow-md text-center p-6 relative">
               {isLoading ? (
                 <div className="flex flex-col items-center justify-center text-pink-500 animate-pulse">
                   <RefreshCcw size={48} className="animate-spin" />
@@ -646,9 +647,10 @@ useEffect(() => {
               ) : (
                 <>
                   <div className="text-pink-400 mb-4">
-                    <Camera size={48} />
+                   <img src={assets.camera_pink} className=" w-[70px] h-[70px]"
+                />
                   </div>
-                  <p className="text-gray-500 text-sm italic">
+                  <p className="text-pink-500 text-sm italic">
                     Upload your photo here to start virtual try-on
                   </p>
                 </>

@@ -68,6 +68,7 @@ import rain_p2 from './rain_p2.jpeg'
 import rain_p3 from './rain_p3.jpeg'
 import rain_p4 from './rain_p4.jpeg'
 
+import camera_pink from './camera_pink.png'
 import swyft_logo from './swyft_logo.png'
 import heart_icon from './heart.png'
 import logo from './Myntra logo.webp'
@@ -109,7 +110,8 @@ export const assets = {
     razorpay_logo,
     stripe_logo,
     cross_icon,
-    swyft_logo
+    swyft_logo,
+    camera_pink
 }
 
 export const prod = [

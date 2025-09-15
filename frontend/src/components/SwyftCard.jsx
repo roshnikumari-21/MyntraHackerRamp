@@ -56,8 +56,6 @@ export default function SwyftCard({
         ${className}
       `}
     >
-      {/* Image */}
-      {/* Image */}
 <div className="absolute inset-2 rounded-2xl overflow-hidden"> 
   <img
     src={image}
