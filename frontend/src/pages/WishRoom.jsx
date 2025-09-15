@@ -561,13 +561,12 @@ useEffect(() => {
 {activeMode === "AI Search" && (
   <div className="flex justify-center mb-6 px-4">
     <div className='flex items-center bg-gray-100 rounded-full w-full max-w-lg px-4 py-2 shadow-inner'>
-      <Search size={20} className="text-gray-500" />
       <input
         type="text"
         value={aiSearchQuery}
         onChange={(e) => setAiSearchQuery(e.target.value)}
         placeholder="Describe the style or mood you want..."
-        className="flex-1 outline-none bg-inherit text-sm text-gray-700 placeholder-gray-400 ml-2"
+        className="flex-1 outline-none bg-inherit text-sm text-gray-800 placeholder-gray-500 ml-2"
         ref={aiSearchInputRef}
       />
       {/* Add the search button here */}
@@ -590,13 +589,13 @@ useEffect(() => {
               </h2>
             </div>
             {activeMode === "Search" && (
-              <div className='flex items-center bg-gray-100 rounded-full w-full px-4 py-2 mb-3'>
+              <div className='flex items-center bg-pink-50 rounded-2xl w-full px-4 py-2 mb-3'>
                 <input
                   type="text"
                   value={topSearchQuery}
                   onChange={(e) => setTopSearchQuery(e.target.value)}
                   placeholder="Search tops..."
-                  className="flex-1 outline-none bg-inherit text-sm text-gray-700 placeholder-gray-400"
+                  className="flex-1 outline-none bg-inherit text-sm text-gray-700 placeholder-gray-500"
                 />
               </div>
             )}
@@ -682,13 +681,13 @@ useEffect(() => {
               </h2>
             </div>
             {activeMode === "Search" && (
-              <div className='flex items-center bg-gray-100 rounded-full w-full px-4 py-2 mb-3'>
+              <div className='flex items-center bg-pink-50 rounded-2xl w-full px-4 py-2 mb-3'>
                 <input
                   type="text"
                   value={bottomSearchQuery}
                   onChange={(e) => setBottomSearchQuery(e.target.value)}
                   placeholder="Search bottoms..."
-                  className="flex-1 outline-none bg-inherit text-sm text-gray-700 placeholder-gray-400"
+                  className="flex-1 outline-none  bg-inherit text-sm text-gray-700 placeholder-gray-500"
                 />
               </div>
             )}
@@ -724,13 +723,13 @@ useEffect(() => {
               </h2>
             </div>
             {activeMode === "Search" && (
-              <div className='flex items-center bg-gray-100 rounded-full w-full px-3 py-2 mb-2'>
+              <div className='flex items-center bg-pink-50 rounded-2xl w-full px-3 py-2 mb-2'>
                 <input
                   type="text"
                   value={topSearchQuery}
                   onChange={(e) => setTopSearchQuery(e.target.value)}
                   placeholder="Search tops..."
-                  className="flex-1 outline-none bg-inherit text-xs text-gray-700 placeholder-gray-400"
+                  className="flex-1 outline-none bg-inherit text-xs text-gray-800 placeholder-gray-400"
                 />
               </div>
             )}
@@ -756,7 +755,7 @@ useEffect(() => {
           </div>
           </div>
 
-          <div className="flex flex-col items-center justify-start w-full">
+          <div className="flex flex-col items-center justify-start w-full h-[400px]">
             <h2 className="font-semibold text-pink-600 mb-2 text-base border-b-2 border-pink-500 inline-block px-2">
               Try-On Room
             </h2>
@@ -781,7 +780,7 @@ useEffect(() => {
               ) : (
                 <>
                   <div className="text-pink-400 mb-4">
-                    <Camera size={40} />
+                    <img src={assets.camera_pink} className=" w-[70px] h-[70px]"></img>
                   </div>
                   <p className="text-gray-500 text-sm italic">
                     Upload your photo here
@@ -815,7 +814,7 @@ useEffect(() => {
               </h2>
             </div>
             {activeMode === "Search" && (
-              <div className='flex items-center bg-gray-100 rounded-full w-full px-3 py-2 mb-2'>
+              <div className='flex items-center bg-pink-50 rounded-2xl w-full px-3 py-2 mb-2'>
                 <input
                   type="text"
                   value={bottomSearchQuery}
@@ -855,7 +854,7 @@ useEffect(() => {
             className={`px-8 sm:px-12 py-3 text-white font-semibold rounded-full shadow-lg transform transition ${
               isLoading
                 ? "bg-gray-400 cursor-not-allowed"
-                : "bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500 hover:scale-105"
+                : "bg-gradient-to-r from-pink-500 via-pink-600 to-purple-500 hover:scale-105"
             }`}
           >
             {isLoading ? "Generating..." : "TRY ON"}
