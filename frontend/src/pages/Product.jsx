@@ -8,9 +8,9 @@ import Navbar from '../components/Navbar';
 import { Camera, RefreshCcw, X, Download } from "lucide-react";
 
 const Product = () => {
-
   const { productId } = useParams();
   const { products, currency, addToCart } = useContext(ShopContext);
+
   const [productData, setProductData] = useState(false);
   const [image, setImage] = useState('');
   const [size, setSize] = useState('');
@@ -61,11 +61,11 @@ const Product = () => {
       const clothImageResponse = await fetch(clothImageUrl);
       const clothImageBlob = await clothImageResponse.blob();
       const clothImageFile = new File([clothImageBlob], "cloth.jpg");
-      
+
       const formData = new FormData();
       formData.append('model_image', uploadedImageFile);
       formData.append('cloth_image', clothImageFile);
-      
+
       let clothType;
       if (productData.subCategory === "Topwear") {
         clothType = "upper";
@@ -76,7 +76,7 @@ const Product = () => {
       } else {
         throw new Error("Cannot determine cloth type for try-on.");
       }
-      
+
       formData.append('cloth_type', clothType);
       formData.append('hd_mode', 'true');
 
@@ -110,7 +110,7 @@ const Product = () => {
         }
         await new Promise(resolve => setTimeout(resolve, 2000));
       }
-      
+
       if (downloadUrl) {
         setTryOnImage(downloadUrl);
       } else {
@@ -124,7 +124,7 @@ const Product = () => {
       setIsLoading(false);
     }
   };
-  
+
   const handleDownload = async () => {
     if (!tryOnImage) return;
     try {
@@ -150,11 +150,11 @@ const Product = () => {
     setUploadedImageFile(null);
     setTryOnImage(null);
     setIsLoading(false);
-  }
+  };
 
   return productData ? (
     <>
-      <div className='border-t-2 pt-10 transition-opacity ease-in duration-500 opacity-100'>
+      <div className='border-t-2 pt-10 mx-4 transition-opacity ease-in duration-500 opacity-100'>
         <div className='flex gap-12 sm:gap-12 flex-col sm:flex-row'>
           <div className='flex-1 flex flex-col-reverse gap-3 sm:flex-row'>
             <div className='flex sm:flex-col overflow-x-auto sm:overflow-y-scroll justify-between sm:justify-normal sm:w-[18.7%] w-full'>
@@ -188,14 +188,14 @@ const Product = () => {
               </div>
             </div>
             <button onClick={() => addToCart(productData._id, size)} className='bg-black text-white px-8 py-3 text-sm active:bg-gray-700'>ADD TO CART</button>
-            
+
             <button
-                onClick={() => setShowTryOnModal(true)}
-                className='ml-4 bg-gradient-to-r from-pink-500 to-purple-500 text-white px-8 py-3 text-sm active:bg-gray-700 rounded-lg'
+              onClick={() => setShowTryOnModal(true)}
+              className='ml-4 bg-gradient-to-r from-pink-500 to-purple-500 text-white px-8 py-3 text-sm active:bg-gray-700 rounded-lg'
             >
-                TRY ON
+              TRY ON
             </button>
-            
+
             <hr className='mt-8 sm:w-4/5' />
             <div className='text-sm text-gray-500 mt-5 flex flex-col gap-1'>
               <p>100% Original product.</p>
@@ -213,9 +213,10 @@ const Product = () => {
         </div>
 
         <RelatedProducts category={productData.category} subCategory={productData.subCategory} />
-
       </div>
+
       <Footer />
+
       {showTryOnModal && (
         <div className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm'>
           <div className='bg-white p-6 rounded-2xl shadow-2xl relative w-[90%] md:w-[70%] lg:w-[50%] animate-fade-in max-h-[90vh] overflow-y-auto'>
@@ -224,7 +225,7 @@ const Product = () => {
             </button>
             <h2 className='text-2xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500'>Virtual Try-On</h2>
             <p className="text-gray-500 text-sm italic text-center mb-4">See how this item looks on you!</p>
-            
+
             <div className="flex flex-col items-center justify-center w-full flex-1 border-2 border-dashed border-pink-300 rounded-xl bg-white shadow-md text-center p-6 relative">
               {isLoading ? (
                 <div className="flex flex-col items-center justify-center text-pink-500 animate-pulse">
@@ -235,13 +236,13 @@ const Product = () => {
                 <img
                   src={tryOnImage}
                   alt="Virtual try-on result"
-                  className="max-h-full object-contain rounded-lg w-full"
+                  className="object-contain rounded-lg w-full max-h-[60vh]"
                 />
               ) : uploadedImage ? (
                 <img
                   src={uploadedImage}
                   alt="Uploaded preview"
-                  className="max-h-full object-contain rounded-lg w-full"
+                  className="object-contain rounded-lg w-full max-h-[60vh]"
                 />
               ) : (
                 <div className="flex flex-col items-center">
@@ -261,36 +262,41 @@ const Product = () => {
               onChange={handleUpload}
               className="block w-full mt-4 text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-pink-50 file:text-pink-700 hover:file:bg-pink-100"
             />
-            
-            <div className="flex justify-center gap-4 mt-6">
-                <button
-                    onClick={handleTryOn}
-                    disabled={isLoading || !uploadedImageFile}
-                    className={`px-8 py-3 text-white font-semibold rounded-full shadow-lg transform transition ${
-                        isLoading || !uploadedImageFile
-                            ? "bg-gray-400 cursor-not-allowed"
-                            : "bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500 hover:scale-105"
-                    }`}
-                >
-                    {isLoading ? "Generating..." : "GENERATE"}
-                </button>
-                {tryOnImage && (
-                  <button
-                    onClick={handleDownload}
-                    className="px-8 py-3 text-white font-semibold rounded-full shadow-lg bg-blue-500 hover:bg-blue-600 hover:scale-105 transform transition flex items-center justify-center gap-2"
-                  >
-                    <Download size={20} />
-                    Download
-                  </button>
-                )}
-            </div>
 
+            <div className="flex justify-center gap-4 mt-6">
+              <button
+                onClick={handleTryOn}
+                disabled={isLoading || !uploadedImageFile}
+                className={`px-8 py-3 text-white font-semibold rounded-full shadow-lg transform transition ${
+                  isLoading || !uploadedImageFile
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500 hover:scale-105"
+                }`}
+              >
+                {isLoading ? "Generating..." : "GENERATE"}
+              </button>
+              {tryOnImage && (
+                <button
+                  onClick={handleDownload}
+                  className="px-8 py-3 text-white font-semibold rounded-full shadow-lg bg-blue-500 hover:bg-blue-600 hover:scale-105 transform transition flex items-center justify-center gap-2"
+                >
+                  <Download size={20} />
+                  Download
+                </button>
+              )}
+            </div>
           </div>
         </div>
       )}
-
     </>
-  ) : <><Navbar /><div className=' opacity-0'></div><Footer /></>;
-}
+  ) : (
+    <>
+      <Navbar />
+      <div className=' opacity-0'></div>
+      <Footer />
+    </>
+  );
+};
 
 export default Product;
+
