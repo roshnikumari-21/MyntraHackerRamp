@@ -10,7 +10,7 @@ const NewFeatureNotice = () => {
           <Sparkles size={16} className="text-pink-900 animate-pulse" />
           <span>New Features Released:</span>
         </div>
-        <span className="font-bold ml-1">Virtual Try-On, Style Sync, and Vibe Search!</span>
+        <span className="font-bold ml-1">Virtual Try-On, Style Sync, and Swyft!</span>
         <ArrowRight size={20} className="ml-1 group-hover:translate-x-1 transition-transform hidden sm:block" />
       </Link>
     </div>

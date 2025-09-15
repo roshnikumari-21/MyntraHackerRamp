@@ -195,79 +195,75 @@ const ShopContextProvider = (props) => {
     }
   };
 const getRecommendations = async () => {
-    try {
-        const simplifiedProducts = products.slice(0, 10).map(({ name, _id }) => ({ name, _id }));
-        const simplifiedWishlist = wishlistedItems.slice(0, 10).map(({ name, _id }) => ({ name, _id }));
-        
-        // Simplify cartItems to an array of objects with itemId, size, and quantity, taking only the first 10.
-        const simplifiedCart = Object.entries(cartItems).slice(0, 10).map(([itemId, sizes]) => ({
-            itemId,
-            sizes: Object.entries(sizes).map(([size, quantity]) => ({ size, quantity }))
-        }));
+  try {
+    const simplifiedProducts = products.slice(0, 10).map(({ name, _id }) => ({ name, _id }));
+    const simplifiedWishlist = wishlistedItems.slice(0, 10).map(({ name, _id }) => ({ name, _id }));
+    
+    const simplifiedCart = Object.entries(cartItems).slice(0, 10).map(([itemId, sizes]) => ({
+      itemId,
+      sizes: Object.entries(sizes).map(([size, quantity]) => ({ size, quantity }))
+    }));
 
-        const hasUserData =
-            Object.keys(cartItems).length > 0 ||
-            wishlistedItems.length > 0 ||
-            searchHistory.length > 0;
+    const hasUserData =
+      Object.keys(cartItems).length > 0 ||
+      wishlistedItems.length > 0 ||
+      searchHistory.length > 0;
 
-        if (!hasUserData) {
-            setRecommendedItems(wishlistedItems);
-            return;
-        }
-
-        const prompt = `
-          You are a shopping assistant. Based on the following user data, recommend the best matching products from the given product catalog.
-          
-          Cart Items: ${JSON.stringify(simplifiedCart, null, 2)}
-          Wishlisted Items: ${JSON.stringify(simplifiedWishlist, null, 2)}
-          Search History: ${JSON.stringify(searchHistory, null, 2)}
-          
-          Product Catalog: ${JSON.stringify(simplifiedProducts, null, 2)}
-          
-          Return only a JSON array of recommended product IDs from the catalog, nothing else.
-        `;
-        console.log(prompt);
-
-        const response = await axios.post(apiUrl, {
-            contents: [{ parts: [{ text: prompt }] }],
-        });
-        console.log(response);
-
-
-        let aiText =
-            response.data.candidates?.[0]?.content?.parts?.[0]?.text || "[]";
-
-        if (aiText.startsWith("```json")) {
-            aiText = aiText.substring(7);
-        }
-        if (aiText.endsWith("```")) {
-            aiText = aiText.slice(0, -3);
-        }
-        aiText = aiText.trim();
-
-        let recommendedIds = [];
-        try {
-            recommendedIds = JSON.parse(aiText);
-        } catch (e) {
-            console.error("Failed to parse Gemini response:", e);
-            console.log("Raw AI response text:", aiText);
-        }
-
-        const aiRecommended = products.filter((p) =>
-            recommendedIds.includes(p._id)
-        );
-
-        const combined = [
-            ...wishlistedItems,
-            ...aiRecommended.filter(
-                (aiItem) => !wishlistedItems.some((w) => w._id === aiItem._id)
-            ),
-        ];
-         console.log(combined);
-        setRecommendedItems(combined);
-    } catch (error) {
-        console.error("Error fetching recommendations:", error);
+    if (!hasUserData) {
+      setRecommendedItems([]); 
+      return;
     }
+
+    const prompt = `
+      You are a shopping assistant. Based on the following user data, recommend the relevant products from the given product catalog.
+      
+      Cart Items: ${JSON.stringify(simplifiedCart, null, 2)}
+      Wishlisted Items: ${JSON.stringify(simplifiedWishlist, null, 2)}
+      Search History: ${JSON.stringify(searchHistory, null, 2)}
+      
+      Product Catalog: ${JSON.stringify(simplifiedProducts, null, 2)}
+      
+      Return only a JSON array of recommended product IDs from the catalog, nothing else.
+    `;
+
+    const response = await axios.post(apiUrl, {
+      contents: [{ parts: [{ text: prompt }] }],
+    });
+
+    let aiText = response.data.candidates?.[0]?.content?.parts?.[0]?.text || "[]";
+
+    if (aiText.startsWith("```json")) {
+      aiText = aiText.substring(7);
+    }
+    if (aiText.endsWith("```")) {
+      aiText = aiText.slice(0, -3);
+    }
+    aiText = aiText.trim();
+
+    let recommendedIds = [];
+    try {
+      recommendedIds = JSON.parse(aiText);
+    } catch (e) {
+      console.error("Failed to parse Gemini response:", e);
+      console.log("Raw AI response text:", aiText);
+    }
+
+    const aiRecommended = products.filter((p) =>
+      recommendedIds.includes(p._id)
+    );
+
+    const combined = [
+      ...wishlistedItems,
+      ...aiRecommended.filter(
+        (aiItem) => !wishlistedItems.some((w) => w._id === aiItem._id)
+      ),
+    ];
+    
+    setRecommendedItems(combined);
+  } catch (error) {
+    console.error("Error fetching recommendations:", error);
+    setRecommendedItems(wishlistedItems);
+  }
 };
 
   useEffect(() => {
@@ -296,7 +292,9 @@ const getRecommendations = async () => {
       }
     }, 500);
     return () => clearTimeout(timeout);
-  }, [cartItems, wishlistedItems ]);
+  }, [cartItems, wishlistedItems ,searchHistory ]);
+
+  
 
   const value = {
     products,
