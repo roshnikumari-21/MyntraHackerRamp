@@ -195,8 +195,8 @@ export default function SwyftCard({
         <h3 className="text-2xl font-bold">{brand}</h3>
         <p className="text-lg">{title}</p>
         <div className="flex items-center mt-1 text-xl font-semibold">
-          ${price}
-          <span className="ml-2">👜</span>
+          ₹{price}
+         
         </div>
         {sizes.length > 0 && (
           <div className="flex gap-2 mt-4">
