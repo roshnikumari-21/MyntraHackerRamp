@@ -18,12 +18,18 @@ import Navbar from './components/Navbar'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import WishList from './pages/WishList'
+import { useLocation } from "react-router-dom";
 
 const App = () => {
+
+  const location = useLocation();
+  const hideNavbarOn = ["/swyft"];
+  const shouldHideNavbar = hideNavbarOn.includes(location.pathname);
+
   return (
     <div>
       <ToastContainer />
-      <Navbar/>
+      {!shouldHideNavbar && <Navbar />}
       <SearchBar />
       <Routes>
         <Route path='/' element={<Home />} />
