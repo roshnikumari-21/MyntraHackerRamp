@@ -1,4 +1,4 @@
-import React from "react";
+
 import metallic from "../assets/images/u1.webp";
 import olive from "../assets/images/u2.webp";
 import cobalt from "../assets/images/u3.webp";
@@ -25,7 +25,7 @@ const ColoursOfTheSeason = () => {
       <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
         COLOURS OF THE SEASON
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {colours.map((item, index) => (
           <div
             key={index}
