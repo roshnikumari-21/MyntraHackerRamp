@@ -43,7 +43,7 @@ const WishRoom = () => {
     }
     setIsAiLoading(true);
 
-    const systemPrompt = "You are an expert fashion stylist. Based on the user's query, provide a list of relevant keywords to filter products by. Include categories, materials, and styles. Respond only with a JSON array of strings.";
+    const systemPrompt = "You are an expert fashion stylist. Based on the user's query, provide a list of relevant keywords to filter products by. only give me single word keywords and not double or triple . Include categories,colors , materials, and styles. Respond only with a JSON array of strings.";
     const userQuery = `Generate keywords for: "${query}"`;
     
     const payload = {
@@ -82,52 +82,6 @@ const WishRoom = () => {
       setAiKeywords([]);
     } finally {
       setIsAiLoading(false);
-    }
-  };
-  
-  const fetchRefinedTitlesFromAI = async (originalQuery, productTitles) => {
-    if (!originalQuery || !productTitles || productTitles.length === 0) {
-      setRefinedTitles([]);
-      return;
-    }
-    setIsRefining(true);
-    const systemPrompt = "You are a highly discerning fashion expert. Given a list of product titles and an original search query, your task is to identify and return only the titles that are highly relevant to the query. Respond only with a JSON array of strings containing the relevant product titles.";
-    const userQuery = `Original query: "${originalQuery}". Products to filter: ${JSON.stringify(productTitles)}`;
-    const payload = {
-      contents: [{ parts: [{ text: userQuery }] }],
-      generationConfig: {
-        responseMimeType: "application/json",
-        responseSchema: {
-          type: "ARRAY",
-          items: {
-            type: "STRING",
-          },
-        },
-      },
-      systemInstruction: {
-        parts: [{ text: systemPrompt }]
-      },
-    };
-    try {
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-
-      const result = await response.json();
-      const refinedTitles = result.candidates?.[0]?.content?.parts?.[0]?.text;
-
-      if (refinedTitles) {
-        const parsedTitles = JSON.parse(refinedTitles);
-        setRefinedTitles(parsedTitles);
-      } else {
-        setRefinedTitles(productTitles);
-      }
-    } catch (error) {
-      setRefinedTitles(productTitles);
-    } finally {
-      setIsRefining(false);
     }
   };
 
@@ -184,7 +138,6 @@ const getFilteredBottoms = () => {
       );
     }
   } else if (activeMode === "Recommendations") {
-    // New logic for recommendations mode
     filtered = recommendedItems.filter(item => item.subCategory === "Bottomwear");
   }
   return filtered;
@@ -242,30 +195,28 @@ useEffect(() => {
   const runAiSearch = async () => {
     if (!triggerAiSearch) return;
 
-    // Step 1: Fetch keywords
     if (aiSearchQuery) {
       await fetchKeywordsFromAI(aiSearchQuery);
     } else {
       setAiKeywords([]);
     }
+    console.log(aiKeywords);
 
-    // Step 2: Refine titles using the newly fetched keywords
     if (aiKeywords.length > 0) {
       const initialFilteredTitles = products
         .filter(item =>
           aiKeywords.some(keyword =>
-            item.name.toLowerCase().includes(keyword.toLowerCase()) ||
-            (item.description && item.description.toLowerCase().includes(keyword.toLowerCase()))
+            item.name.toLowerCase().includes(keyword.toLowerCase())
           )
         )
         .map(item => item.name);
 
-      await fetchRefinedTitlesFromAI(aiSearchQuery, initialFilteredTitles);
+        setRefinedTitles(initialFilteredTitles);
+        console.log(refinedTitles)
+
     } else {
       setRefinedTitles([]);
     }
-
-    // Reset the trigger so the search doesn't re-run
     setTriggerAiSearch(false);
   };
 
