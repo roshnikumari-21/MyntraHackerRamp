@@ -112,6 +112,9 @@ import p_101 from './p_101.png'
 import p_102_1 from './p_102_1.png'
 import p_102_2 from './p_102_2.png'
 import p_103 from './p_103.png'
+import p_104 from './p_104.png'
+import p_105 from './p_105.png'
+import p_106 from './p_106.png'
 
 
 export const assets = {
@@ -154,6 +157,32 @@ export const prod = [
         bestseller: true,
         likes : 250
     },
+    {
+        _id: "babco",
+        name: "Women Floral Printed Fit & Flare Midi Dress , ethnic dress",
+        description: "Pink floral print fit & flare dress Mandarin collar Short, puff sleeve Midi length in flared hem",
+        price: 799,
+        image: [p_106],
+        category: "Women",
+        subCategory: "full_set",
+        sizes: ["S", "M", "L", "XL"],
+        date: 1716668445448,
+        bestseller: true,
+        likes : 1786
+    },
+    {
+        _id: "bbaco",
+        name: "Women Ethnic MotifsPrinted Square Neck Kurti",
+        description: "Pink and purple straight kurti Ethnic Motifs printed Square neck, sleeveless, regular sleeves Machine weave regular viscose rayon",
+        price: 699,
+        image: [p_105],
+        category: "Women",
+        subCategory: "Topwear",
+        sizes: ["S", "M", "L", "XL"],
+        date: 1716668445448,
+        bestseller: true,
+        likes : 250
+    },
      {
         _id: "baaco",
         name: "Floral Embroidered Tie-Up Neck Straight Short ethnic Kurti",
@@ -173,6 +202,19 @@ export const prod = [
         description: "Black and Red printed vest, Has a V-Neck, Sleeveless, Button closure",
         price: 789,
         image: [p_103],
+        category: "Women",
+        subCategory: "Topwear",
+        sizes: ["S", "M", "L", "XL"],
+        date: 1716668445448,
+        bestseller: true,
+        likes : 278
+    },
+    {
+        _id: "baacb",
+        name: "Floral Embroidered Sleeveless Cotton Top",
+        description: "Green regular top Floral embroidered V-neck, sleeveless,no sleeves Knitted and woven",
+        price: 789,
+        image: [p_104],
         category: "Women",
         subCategory: "Topwear",
         sizes: ["S", "M", "L", "XL"],

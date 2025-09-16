@@ -60,7 +60,7 @@ const Swyft = () => {
           price={product.price}
           likes={product.likes || 0}
           sizes={product.sizes || []}
-          bestseller={product.bestseller || false} // Pass the bestseller status
+          bestseller={product.bestseller || false}
         />
       ))}
     </div>
