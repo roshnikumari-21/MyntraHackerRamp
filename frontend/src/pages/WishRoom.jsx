@@ -5,7 +5,7 @@ import { ShopContext } from "../context/ShopContext";
 import {assets} from '../assets/assets'
 
 const WishRoom = () => {
-  const { products, addMultipleToCart ,recommendedItems } = useContext(ShopContext);
+  const { products, addMultipleToCart } = useContext(ShopContext);
   const [uploadedImage, setUploadedImage] = useState(null);
   const [uploadedImageFile, setUploadedImageFile] = useState(null);
   const [selectedTop, setSelectedTop] = useState(null);
@@ -23,6 +23,7 @@ const WishRoom = () => {
   const [isRefining, setIsRefining] = useState(false);
   const fileInputRef = useRef(null);
   const aiSearchInputRef = useRef(null);
+
 
   const FITROOM_API_KEY = import.meta.env.VITE_API_KEY;
   const API_BASE_URL = 'https://platform.fitroom.app/api/tryon/v2';
@@ -43,7 +44,7 @@ const WishRoom = () => {
     }
     setIsAiLoading(true);
 
-    const systemPrompt = "You are an expert fashion stylist. Based on the user's query, provide a list of relevant keywords to filter products by. only give me single word keywords and not double or triple . Include categories,colors , materials, and styles. Respond only with a JSON array of strings.";
+    const systemPrompt = "You are an expert fashion stylist. Based on the user's query, provide a list of relevant keywords to filter products by. only give me single word keywords and not double or triple . Include categories,colors,materials,types of clothes ,related keywords and styles for eg : for barbie it would be pink , for diwali or holi it would be ethnic or festival or festive. Respond only with a JSON array of strings.";
     const userQuery = `Generate keywords for: "${query}"`;
     
     const payload = {
@@ -91,7 +92,7 @@ const WishRoom = () => {
       return;
     }
     setIsRefining(true);
-    const systemPrompt = "You are a highly discerning fashion expert. Given a list of product titles and an original search query, your task is to identify and return only the titles that are highly relevant to the query. Respond only with a JSON array of strings containing the relevant product titles.";
+    const systemPrompt = "You are a fashion expert. Given a list of product titles and an original search query, your task is to identify and return the titles that are relevant to the query, always respond with a bunch of titles keeping the relevant ones and only removing those which are highly unrelevant. Respond only with a JSON array of strings containing the relevant product titles.";
     const userQuery = `Original query: "${originalQuery}". Products to filter: ${JSON.stringify(productTitles)}`;
     const payload = {
       contents: [{ parts: [{ text: userQuery }] }],
@@ -131,6 +132,18 @@ const WishRoom = () => {
     }
   };
 
+const fncArray = (array) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+};
+const allItemmm = [
+  ...products.slice(0,40),
+  ...products.slice(86, 90),
+];
+const Itemmm = fncArray(allItemmm);
 
 const getFilteredTops = () => {
   let filtered = allTops;
@@ -155,8 +168,7 @@ const getFilteredTops = () => {
       );
     }
   } else if (activeMode === "Recommendations") {
-    // New logic for recommendations mode
-    filtered = recommendedItems.filter(item => item.subCategory === "Topwear");
+    filtered = Itemmm.filter(item => item.subCategory === "Topwear");
   }
 
   return filtered;
@@ -184,7 +196,7 @@ const getFilteredBottoms = () => {
       );
     }
   } else if (activeMode === "Recommendations") {
-    filtered = recommendedItems.filter(item => item.subCategory === "Bottomwear");
+    filtered = Itemmm.filter(item => item.subCategory === "Bottomwear");
   }
   return filtered;
 };
@@ -228,11 +240,9 @@ const getFilteredBottoms = () => {
 
   useEffect(() => {
     if (allTops.length > 0 && !selectedTop) {
-      console.log("Setting default top product:", allTops[0]._id);
       setSelectedTop(allTops[0]._id);
     }
     if (allBottoms.length > 0 && !selectedBottom) {
-      console.log("Setting default bottom product:", allBottoms[0]._id);
       setSelectedBottom(allBottoms[0]._id);
     }
   }, [products, selectedTop, selectedBottom, allBottoms, allTops]);
@@ -266,7 +276,7 @@ useEffect(() => {
   };
 
   runAiSearch();
-}, [triggerAiSearch, aiSearchQuery, products, activeMode, aiKeywords]);
+}, [triggerAiSearch, aiSearchQuery, activeMode]);
 
   const handleAddBothToCart = () => {
     console.log("Add both to cart button clicked.");
