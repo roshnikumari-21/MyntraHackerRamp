@@ -725,7 +725,7 @@ useEffect(() => {
                   value={topSearchQuery}
                   onChange={(e) => setTopSearchQuery(e.target.value)}
                   placeholder="Search tops..."
-                  className="flex-1 outline-none bg-inherit text-xs text-gray-800 placeholder-gray-400"
+                  className="flex-1 border-none outline-none bg-inherit text-xs text-gray-800 placeholder-gray-400"
                 />
               </div>
             )}
@@ -816,7 +816,7 @@ useEffect(() => {
                   value={bottomSearchQuery}
                   onChange={(e) => setBottomSearchQuery(e.target.value)}
                   placeholder="Search bottoms..."
-                  className="flex-1 outline-none bg-inherit text-xs text-gray-700 placeholder-gray-400"
+                  className="flex-1 border-none outline-none bg-inherit text-xs text-gray-700 placeholder-gray-400"
                 />
               </div>
             )}
