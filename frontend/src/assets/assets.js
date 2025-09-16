@@ -111,6 +111,7 @@ import p_100 from './p_100.png'
 import p_101 from './p_101.png'
 import p_102_1 from './p_102_1.png'
 import p_102_2 from './p_102_2.png'
+import p_103 from './p_103.png'
 
 
 export const assets = {
@@ -165,6 +166,19 @@ export const prod = [
         date: 1716668445448,
         bestseller: true,
         likes : 2500
+    },
+    {
+        _id: "baaca",
+        name: "Indie Floral Printed ethnic Vest , embroidered",
+        description: "Black and Red printed vest, Has a V-Neck, Sleeveless, Button closure",
+        price: 789,
+        image: [p_103],
+        category: "Women",
+        subCategory: "Topwear",
+        sizes: ["S", "M", "L", "XL"],
+        date: 1716668445448,
+        bestseller: true,
+        likes : 278
     },
 {
         _id: "aaacp",

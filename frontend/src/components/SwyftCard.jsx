@@ -34,12 +34,8 @@ export default function SwyftCard({
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [selectedSize, setSelectedSize] = useState(null);
 
-  // Handlers for product interactions
   const handleWishlist = () => {
     setWishlisted((prev) => !prev);
-    // You should have a function in ShopContext to handle this persistence
-    // For now, it's just a state update.
-    // updateWishlist(id, !wishlisted);
   };
 
   const handleLike = () => {
@@ -47,9 +43,6 @@ export default function SwyftCard({
     const newLikes = newLiked ? likes + 1 : likes - 1;
     setLiked(newLiked);
     setLikes(newLikes);
-    // You should have a function in ShopContext to handle this persistence
-    // For now, it's just a state update.
-    // updateLikes(id, newLikes);
   };
 
   const handleAddToCart = () => {
@@ -57,7 +50,6 @@ export default function SwyftCard({
       toast.error("Please choose a size first.");
       return;
     }
-    // Now you can add to cart since a size is selected
     addToCart(id, selectedSize);
     toast.success("Item added to cart!");
   };
@@ -82,7 +74,6 @@ export default function SwyftCard({
     navigate(`/product/${id}`);
   };
 
-  // Swipe handlers using react-swipeable
   const swipeHandlers = useSwipeable({
     onSwipedLeft: () => {
       setCurrentImageIndex((prevIndex) =>
@@ -105,7 +96,6 @@ export default function SwyftCard({
         overflow-hidden shadow-2xl bg-black text-white
         ${className}`}
     >
-      {/* Image container */}
       <div
         className="relative flex ml-2 mr-2 items-center justify-center h-[80%] cursor-grab"
         {...swipeHandlers}
@@ -116,7 +106,6 @@ export default function SwyftCard({
           className="h-full w-auto inset-2 object-cover rounded-xl transition-opacity duration-300"
         />
 
-        {/* Carousel Dots */}
         {images.length > 1 && (
           <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
             {images.map((_, index) => (
@@ -131,13 +120,10 @@ export default function SwyftCard({
           </div>
         )}
 
-        {/* Top gradient */}
         <div className="absolute top-0 left-0 w-full h-[5%] bg-gradient-to-b from-black via-gray-800/60 to-transparent z-10" />
-        {/* Bottom gradient */}
         <div className="absolute bottom-0 left-0 w-full h-[25%] bg-gradient-to-t from-black via-gray-800/80 to-transparent z-10" />
       </div>
 
-      {/* Back Button */}
       <div className="absolute top-4 left-4 z-20 flex items-center gap-2 text-lg font-semibold">
         <button
           onClick={() => navigate("/")}
@@ -147,7 +133,6 @@ export default function SwyftCard({
         </button>
       </div>
 
-      {/* Right Icons */}
       <div className="absolute right-4  top-1/2 flex flex-col gap-4 -translate-y-1/2 items-center z-20">
         <button onClick={handleWishlist} className="flex flex-col items-center gap-1">
           <div className="p-1.5 rounded-full bg-black/20 hover:bg-white/30 transition">
@@ -181,6 +166,24 @@ export default function SwyftCard({
             <Shirt className="w-5 h-5 text-white" />
           </div>
           <span className="text-xs">Try On</span>
+        </button>
+        <button onClick={handleKnowMore} className="flex flex-col items-center gap-1">
+          <div className="p-1.5 rounded-full transition">
+            
+          </div>
+          <span className="text-xs"></span>
+        </button>
+        <button onClick={handleKnowMore} className="flex flex-col items-center gap-1">
+          <div className="p-1.5 rounded-full transition">
+            
+          </div>
+          <span className="text-xs"></span>
+        </button>
+        <button onClick={handleKnowMore} className="flex flex-col items-center gap-1">
+          <div className="p-1.5 rounded-full transition">
+            
+          </div>
+          <span className="text-xs"></span>
         </button>
         <button onClick={handleKnowMore} className="flex flex-col items-center gap-1">
           <div className="p-1.5 rounded-full transition">
