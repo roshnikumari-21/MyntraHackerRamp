@@ -46,7 +46,7 @@ const Swyft = () => {
             behavior: "smooth",
           });
         }
-      }, 3000);
+      }, 5000);
     }
 
     return () => clearInterval(scrollInterval);
