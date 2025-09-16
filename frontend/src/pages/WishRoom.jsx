@@ -652,8 +652,7 @@ useEffect(() => {
               ) : (
                 <>
                   <div className="text-pink-400 mb-4">
-                   <img src={assets.camera_pink} className=" w-[70px] h-[70px]"
-                />
+                   <Camera size={40}/>
                   </div>
                   <p className="text-pink-500 text-sm italic">
                     Upload your photo here to start virtual try-on
@@ -786,7 +785,7 @@ useEffect(() => {
               ) : (
                 <>
                   <div className="text-pink-400 mb-4">
-                    <img src={assets.camera_pink} className=" w-[70px] h-[70px]"></img>
+                    <Camera size={50}/>
                   </div>
                   <p className="text-gray-500 text-sm italic">
                     Upload your photo here
