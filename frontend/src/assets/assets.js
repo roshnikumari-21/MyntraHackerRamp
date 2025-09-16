@@ -75,6 +75,7 @@ import add_icon from './add_icon.png'
 import order_icon from './order_icon.png'
 import upload_area from './upload_area.png'
 import parcel_icon from './parcel_icon.svg'
+import teamBanner from './team-butterrflies-banner.png'
 
 import p_60 from './p_60.png'
 import p_61 from './p_61.png'
@@ -113,6 +114,7 @@ import p_102_2 from './p_102_2.png'
 
 
 export const assets = {
+    teamBanner,
     add_icon,
     order_icon,
     upload_area,

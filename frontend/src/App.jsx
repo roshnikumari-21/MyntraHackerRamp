@@ -18,11 +18,11 @@ import Navbar from './components/Navbar'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import WishList from './pages/WishList'
+import BannerSplash from './components/BannerSplash'
+import {assets} from './assets/assets'
 
 const App = () => {
   const location = useLocation()
-
-  // track window width
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
 
   useEffect(() => {
@@ -31,15 +31,16 @@ const App = () => {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  // hide navbar on /swyft only if mobile
   const hideNavbarOn = ['/swyft']
   const shouldHideNavbar = hideNavbarOn.includes(location.pathname) && isMobile
 
   return (
     <div>
+      <BannerSplash image={assets.teamBanner} duration={4000} />
       <ToastContainer />
       {!shouldHideNavbar && <Navbar />}
       <SearchBar />
+
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/collection' element={<Collection />} />
@@ -61,4 +62,5 @@ const App = () => {
 }
 
 export default App
+
 

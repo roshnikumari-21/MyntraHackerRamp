@@ -562,7 +562,7 @@ useEffect(() => {
         value={aiSearchQuery}
         onChange={(e) => setAiSearchQuery(e.target.value)}
         placeholder="Describe the style or mood you want..."
-        className="flex-1 outline-none bg-inherit text-sm text-gray-800 placeholder-gray-500 ml-2"
+        className="flex-1 border-none outline-none bg-inherit text-sm text-gray-800 placeholder-gray-500 ml-2"
         ref={aiSearchInputRef}
       />
       {/* Add the search button here */}
@@ -591,7 +591,7 @@ useEffect(() => {
                   value={topSearchQuery}
                   onChange={(e) => setTopSearchQuery(e.target.value)}
                   placeholder="Search tops..."
-                  className="flex-1 outline-none bg-inherit text-sm text-gray-700 placeholder-gray-500"
+                  className="flex-1 border-none outline-none bg-inherit text-sm text-gray-700 placeholder-gray-500"
                 />
               </div>
             )}
@@ -683,7 +683,7 @@ useEffect(() => {
                   value={bottomSearchQuery}
                   onChange={(e) => setBottomSearchQuery(e.target.value)}
                   placeholder="Search bottoms..."
-                  className="flex-1 outline-none  bg-inherit text-sm text-gray-700 placeholder-gray-500"
+                  className="flex-1 border-none outline-none  bg-inherit text-sm text-gray-700 placeholder-gray-500"
                 />
               </div>
             )}
