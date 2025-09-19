@@ -114,7 +114,7 @@ We address these challenges with **two core products**:
 
 ## 📚 References & Links
 - 🔗 [GitHub Repository](https://github.com/aprajita-99/MyntraHackerramp)  
-- 🧠 [PyTorch Segmentation Models](https://pytorch.org/)  
+- 🧠 [IDM-VTON](https://github.com/yisol/IDM-VTON).
 - 👕 [Virtual Try-On Research](https://github.com/switchablenorms/DeepFashion_Try_On)  
 - 📖 [Recommendation Systems Overview](https://towardsdatascience.com/recommendation-systems)  
 
