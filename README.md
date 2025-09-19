@@ -22,6 +22,8 @@ Current online shopping experiences rely heavily on **static images** and user i
 - Lower **engagement** compared to social media platforms  
 
 ---
+<img width="1904" height="922" alt="image" src="https://github.com/user-attachments/assets/69672f59-52ae-47a0-a4a4-b6359850d988" />
+
 
 ## 🛠️ Our Solution
 We address these challenges with **two core products**:
