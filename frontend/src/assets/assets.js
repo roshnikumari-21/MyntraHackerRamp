@@ -68,6 +68,7 @@ import order_icon from './order_icon.png'
 import upload_area from './upload_area.png'
 import parcel_icon from './parcel_icon.svg'
 import teamBanner from './team-butterrflies-banner.png'
+import myntra2 from './myntra-2.svg'
 
 import p_60 from './p_60.png'
 import p_61 from './p_61.png'
@@ -144,7 +145,8 @@ export const assets = {
     camera_pink,
     swyft_front,
     SwyftHomeBanner,
-    StyleSyncBanner
+    StyleSyncBanner,
+    myntra2
 }
 
 export const prod = [

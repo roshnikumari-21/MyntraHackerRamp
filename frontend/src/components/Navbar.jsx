@@ -25,7 +25,7 @@ const Navbar = () => {
     <div className="flex items-center justify-between py-3 px-4 sm:px-6 shadow-sm border-b bg-white">
       {/* Logo */}
       <Link to="/">
-        <img src={assets.logo} className="w-[60px] sm:w-[70px]" alt="logo" />
+        <img src={assets.myntra2} className="w-[60px] sm:w-[70px]" alt="logo" />
       </Link>
 
       {/* Desktop Menu */}
