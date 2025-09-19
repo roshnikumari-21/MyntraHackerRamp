@@ -1,16 +1,9 @@
 import p_img1 from './p_img1.png'
 import p_img3 from './p_img3.png'
-import p_img4 from './p_img4.png'
 import p_img5 from './p_img5.png'
 import p_img6 from './p_img6.png'
-import p_img7 from './p_img7.png'
-import p_img8 from './p_img8.png'
 import p_img9 from './p_img9.png'
-import p_img10 from './p_img10.png'
-import p_img11 from './p_img11.png'
-import p_img12 from './p_img12.png'
 import p_img13 from './p_img13.png'
-import p_img14 from './p_img14.png'
 import p_img15 from './p_img15.png'
 import p_img16 from './p_img16.png'
 import p_img17 from './p_img17.png'
@@ -52,7 +45,6 @@ import diwali_p5 from './diwali_p5.jpeg'
 import holi_p1 from './holi_p1.jpg'
 import holi_p3 from './holi_p3.webp'
 import holi_p5 from './holi_p5.jpeg'
-import rain_p4 from './rain_p4.jpeg'
 import swyft_front from './Swyft_front.png'
 import camera_pink from './camera_pink.png'
 import swyft_logo from './swyft_logo.png'
@@ -96,7 +88,6 @@ import p_85 from './p_85.png'
 import p_86 from './p_86.png'
 import p_87 from './p_87.png'
 import p_88 from './p_88.png'
-import p_89 from './p_89.png'
 import p_90 from './p_90.png'
 import p_91 from './p_91.png'
 import p_92 from './p_92.png'
@@ -124,6 +115,8 @@ import p_116 from './p_116.png'
 import p_117 from './p_117.png'
 import p_118 from './p_118.png'
 import p_119 from './p_119.png'
+import SwyftHomeBanner from './SwyftHomeBanner3.png'
+import StyleSyncBanner from './StyleSyncBanner2.png'
 
 
 export const assets = {
@@ -149,7 +142,9 @@ export const assets = {
     cross_icon,
     swyft_logo,
     camera_pink,
-    swyft_front
+    swyft_front,
+    SwyftHomeBanner,
+    StyleSyncBanner
 }
 
 export const prod = [
