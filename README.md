@@ -32,13 +32,18 @@ We address these challenges with **two core products**:
 - AI-powered **virtual try-on** lets users visualize outfits on themselves before buying  
 - Supports **mix & match** experimentation with multiple AI search modes  
 - Reduces return rates by increasing shopper confidence  
-- Offers an **immersive and playful shopping experience**  
+- Offers an **immersive and playful shopping experience**
+<img width="1901" height="916" alt="image" src="https://github.com/user-attachments/assets/9ab9e650-5c82-4a7f-81e7-66ec0b9c5242" />
+<img width="1568" height="856" alt="image" src="https://github.com/user-attachments/assets/10aa896d-a5ea-49ef-be7e-13098d46daf1" />
+
+
 
 ### 2. Swyft: Intelligent Discovery Feed
 - **AI-powered infinite scroll feed**, inspired by content discovery on social media  
 - **Neural network personalization** learns user style preferences  
 - **Adaptive bandit algorithms** balance personalization with new exploration  
 - **Continuous learning** ensures each interaction refines recommendations  
+<img width="1895" height="919" alt="image" src="https://github.com/user-attachments/assets/a9853e3e-d47c-4f9b-b097-30fb97e570c9" />
 
 ---
 
