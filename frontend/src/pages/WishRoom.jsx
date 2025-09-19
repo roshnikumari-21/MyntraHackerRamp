@@ -337,13 +337,13 @@ useEffect(() => {
       formData.append('cloth_image', topImageFile);
       formData.append('lower_cloth_image', bottomImageFile);
       formData.append('cloth_type', 'combo');
-      formData.append('hd_mode', 'true');
+      formData.append('hd_mode', 'false');
       console.log("FormData for API created:", {
         model_image: uploadedImageFile.name,
         cloth_image: topImageFile.name,
         lower_cloth_image: bottomImageFile.name,
         cloth_type: 'combo',
-        hd_mode: 'true'
+        hd_mode: 'false'
       });
 
       const createResponse = await fetch(`${API_BASE_URL}/tasks`, {

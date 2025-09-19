@@ -78,7 +78,7 @@ const Product = () => {
       }
 
       formData.append('cloth_type', clothType);
-      formData.append('hd_mode', 'true');
+      formData.append('hd_mode', 'false');
 
       const createResponse = await fetch(`${API_BASE_URL}/tasks`, {
         method: 'POST',
