@@ -6,8 +6,9 @@ export default function SwyftBanner() {
   const navigate = useNavigate();
 
   const banners = [
-    { src: assets.SwyftHomeBanner, link: "/swyft" },
     { src: assets.StyleSyncBanner, link: "/WishRoomHome" },
+    { src: assets.SwyftHomeBanner, link: "/swyft" }
+    
   ];
 
   const [index, setIndex] = useState(0);
