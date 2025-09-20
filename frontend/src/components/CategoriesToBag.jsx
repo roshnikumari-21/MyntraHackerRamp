@@ -14,7 +14,6 @@ const categories = [
   { img: img5, name: "Jewellery" },
   { img: img6, name: "Teens Wear" },
 ];
-
 const CategoriesToBag = () => {
   return (
     <div className="py-10">
