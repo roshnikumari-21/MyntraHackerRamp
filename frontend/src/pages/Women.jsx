@@ -22,7 +22,7 @@ const Women = () => {
     }
   };
 
-  // apply filters (only WOMEN products)
+  // apply filters 
   const applyFilter = () => {
     let productsCopy = products.filter((item) => item.category === "Women");
 
