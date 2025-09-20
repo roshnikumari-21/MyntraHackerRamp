@@ -23,7 +23,7 @@ const ShopContextProvider = (props) => {
   const [wishlistedItems, setWishlistedItems] = useState([]);
   const navigate = useNavigate();
 
-  // ---------------- Search ----------------
+// search
   const getSearchResults = (searchQuery) => {
     if (!searchQuery) {
       setSearchResults([]);
@@ -34,8 +34,7 @@ const ShopContextProvider = (props) => {
     );
     setSearchResults(results);
   };
-
-  // ---------------- Cart ----------------
+  // cart 
   const addToCart = async (itemId, size) => {
     if (!size) {
       toast.error("Select Product Size");
