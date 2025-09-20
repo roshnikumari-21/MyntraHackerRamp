@@ -1,16 +1,9 @@
 import p_img1 from './p_img1.png'
 import p_img3 from './p_img3.png'
-import p_img4 from './p_img4.png'
 import p_img5 from './p_img5.png'
 import p_img6 from './p_img6.png'
-import p_img7 from './p_img7.png'
-import p_img8 from './p_img8.png'
 import p_img9 from './p_img9.png'
-import p_img10 from './p_img10.png'
-import p_img11 from './p_img11.png'
-import p_img12 from './p_img12.png'
 import p_img13 from './p_img13.png'
-import p_img14 from './p_img14.png'
 import p_img15 from './p_img15.png'
 import p_img16 from './p_img16.png'
 import p_img17 from './p_img17.png'
@@ -52,7 +45,6 @@ import diwali_p5 from './diwali_p5.jpeg'
 import holi_p1 from './holi_p1.jpg'
 import holi_p3 from './holi_p3.webp'
 import holi_p5 from './holi_p5.jpeg'
-import rain_p4 from './rain_p4.jpeg'
 import swyft_front from './Swyft_front.png'
 import camera_pink from './camera_pink.png'
 import swyft_logo from './swyft_logo.png'
@@ -76,6 +68,7 @@ import order_icon from './order_icon.png'
 import upload_area from './upload_area.png'
 import parcel_icon from './parcel_icon.svg'
 import teamBanner from './team-butterrflies-banner.png'
+import myntra2 from './myntra-2.svg'
 
 import p_60 from './p_60.png'
 import p_61 from './p_61.png'
@@ -96,7 +89,6 @@ import p_85 from './p_85.png'
 import p_86 from './p_86.png'
 import p_87 from './p_87.png'
 import p_88 from './p_88.png'
-import p_89 from './p_89.png'
 import p_90 from './p_90.png'
 import p_91 from './p_91.png'
 import p_92 from './p_92.png'
@@ -115,6 +107,17 @@ import p_103 from './p_103.png'
 import p_104 from './p_104.png'
 import p_105 from './p_105.png'
 import p_106 from './p_106.png'
+import p_110 from './p_110.png'
+import p_111 from './p_111.png'
+import p_112 from './p_112.png'
+import p_113 from './p_113.png'
+import p_115 from './p_115.png'
+import p_116 from './p_116.png'
+import p_117 from './p_117.png'
+import p_118 from './p_118.png'
+import p_119 from './p_119.png'
+import SwyftHomeBanner from './SwyftHomeBanner3.png'
+import StyleSyncBanner from './StyleSyncBanner2.png'
 
 
 export const assets = {
@@ -140,7 +143,10 @@ export const assets = {
     cross_icon,
     swyft_logo,
     camera_pink,
-    swyft_front
+    swyft_front,
+    SwyftHomeBanner,
+    StyleSyncBanner,
+    myntra2
 }
 
 export const prod = [
@@ -156,6 +162,123 @@ export const prod = [
         date: 1716668445448,
         bestseller: true,
         likes : 250
+    },
+     {
+        _id: "aabco",
+        name: "Pink & Golden Banaras Brocade Self Design Lehenga Skirt , ethnic skirt",
+        description: "Pink and Golden woven design Banarasi Brocade lehenga skirt, has a waistband with drawstring an zip closure, flared hem, attached lining",
+        price: 679,
+        image: [p_112],
+        category: "Women",
+        subCategory: "Bottomwear",
+        sizes: ["S", "M", "L", "XL"],
+        date: 1716668445448,
+        bestseller: true,
+        likes : 567
+    },
+     {
+        _id: "aaaaaa",
+        name: "Women Cotton Straight Palazzos , ethnic wear",
+        description: "White woven palazzos Solid Sheer with half lining Straight fit Partially elasticated waistband Length: regular Woven cotton fabric",
+        price: 805,
+        image: [p_113],
+        category: "Women",
+        subCategory: "Bottomwear",
+        sizes: ["S", "M", "L", "XL"],
+        date: 1716668445448,
+        bestseller: true,
+        likes : 567
+    },
+    {
+        _id: "bbaco",
+        name: "Anayna Women Printed A-Line Flared Cotton Maxi Skirt , ethnic skirt for festivals",
+        description: "Black, Beige & Maroon Printed A-Line Flared Maxi Skirt,has slip-on closure",
+        price: 900,
+        image: [p_110],
+        category: "Women",
+        subCategory: "Bottomwear",
+        sizes: ["S", "M", "L", "XL"],
+        date: 1716668445448,
+        bestseller: true,
+        likes : 2789
+    },
+    {
+        _id: "bbbco",
+        name: "Women Deep Navy Blue Floral Skirt , ethnic skirt for festivals",
+        description: "Your fashionable attire will make a great first impression with this lovely skirt. It has floral print and flared hemline for comfort. Deep navy blue shade Beautiful floral print Flared hemline Maxi length Polyester, dry clean",
+        price: 789,
+        image: [p_111],
+        category: "Women",
+        subCategory: "Bottomwear",
+        sizes: ["S", "M", "L", "XL"],
+        date: 1716668445448,
+        bestseller: true,
+        likes : 2789
+    },
+     {
+        _id: "aaaaab",
+        name: "Women Gold-Toned Solid Skinny Fit Shimmer Ankle-Length Leggings",
+        description: "Gold-toned solid skinny fit mid-rise shimmer ankle-length leggings, has an elasticated waistband with a slip-on closure",
+        price: 789,
+        image: [p_115],
+        category: "Women",
+        subCategory: "Bottomwear",
+        sizes: ["S", "M", "L", "XL"],
+        date: 1716668445448,
+        bestseller: true,
+        likes : 2789,
+    },
+    {
+        _id: "aaaaac",
+        name: "Pink Puff Sleeve Crop Top",
+        description: "Pink crop fitted top Solid V-neck, long, puff sleeve sleeves Woven",
+        price: 789,
+        image: [p_116],
+        category: "Women",
+        subCategory: "Topwear",
+        sizes: ["S", "M", "L", "XL"],
+        date: 1716668445448,
+        bestseller: true,
+        likes : 2789,
+    },
+    {
+        _id: "aaaaad",
+        name: "Floral Print Peplum Top",
+        description: "Pink Peplum top Floral printed V-neck, short, regular sleeves Woven crepe",
+        price: 239,
+        image: [p_117],
+        category: "Women",
+        subCategory: "Topwear",
+        sizes: ["S", "M", "L", "XL"],
+        date: 1716668445448,
+        bestseller: true,
+        likes : 2789,
+    },
+     {
+        _id: "aaaaae",
+        name: "The Lifestyle Co. Women Long Sleeves Ruffle Top",
+        description: "Product Color: Pink Pattern: Ruffled Sleeves: Long sleeves Neck: Tie-Up Neck Slip-on closure",
+        price: 450,
+        image: [p_118],
+        category: "Women",
+        subCategory: "Topwear",
+        sizes: ["S", "M", "L", "XL"],
+        date: 1716668445448,
+        bestseller: true,
+        likes : 347,
+    },
+     {
+        _id: "aaaaaf",
+        name: "Women Printed Cotton Peplum Top",
+        description: "Pink regular Peplum top Paisely printed V-neck long, regular sleeves Woven cotton",
+        price: 600,
+        image: [p_119],
+        category: "Women",
+        subCategory: "Topwear",
+        sizes: ["S", "M", "L", "XL"],
+        date: 1716668445448,
+        bestseller: true,
+        likes : 567,
     },
     {
         _id: "babco",
@@ -313,32 +436,7 @@ export const prod = [
         bestseller: true,
         likes : 2509
     },
-{
-        _id: "aaacw",
-        name: "Navy and Red Plaid Casual Shirt",
-        description: "This stylish men's casual shirt features a classic plaid pattern with a primary color palette of deep navy and vibrant red, accented by subtle light blue lines. The shirt has a button-down front, a standard collar, and long sleeves with roll-up tabs for a versatile look. The fabric has a slightly wrinkled, crinkled texture that gives it a relaxed, laid-back feel. A small patch pocket on the chest adds a functional detail. Paired with light-wash jeans and a leather bracelet, this shirt is a great choice for a casual day out.",
-        price: 899,
-        image: [p_68],
-        category: "Men",
-        subCategory: "Topwear",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716668445448,
-        bestseller: false,
-        likes : 259
-    },
-{
-        _id: "aaacx",
-        name: "Beige Straight-Fit Trousers with Drawstring Waist",
-        description: "These versatile trousers are designed for both comfort and a clean, relaxed style. Made from a lightweight, beige linen-blend fabric, they feature a visible elasticated drawstring waist for an adjustable fit. The pants have a straight-leg silhouette, providing a modern, comfortable drape without being too baggy. They include functional side pockets and are a great choice for a casual, warm-weather look. Paired with white sneakers, these trousers offer a comfortable yet polished aesthetic",
-        price: 679,
-        image: [p_69],
-        category: "Men",
-        subCategory: "Bottomwear",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716668445448,
-        bestseller: false,
-        likes : 258
-    },
+
 {
         _id: "aaacy",
         name: "Hot Pink and Black Sweater with Balloon Sleeves",
@@ -352,19 +450,7 @@ export const prod = [
         bestseller: true,
         likes : 2890
     },
-{
-        _id: "aaacz",
-        name: "Boys' Olive Green and Black Bomber Jacket",
-        description: "This stylish bomber jacket is perfect for a cool and casual look. It features a modern color-block design with an olive green body and contrasting black raglan sleeves. The jacket has a full-zip front, a ribbed collar, and cuffs for a comfortable fit. A small, subtle patch is visible on the left arm. This versatile piece is paired with blue denim jeans, making it an excellent choice for everyday wear.",
-        price: 678,
-        image: [p_71],
-        category: "Kids",
-        subCategory: "Topwear",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716668445448,
-        bestseller: false,
-        likes : 678
-    },
+
 {
         _id: "aaada",
         name: "Black and White Varsity Bomber Jacket",
@@ -599,20 +685,7 @@ export const prod = [
         bestseller: false,
         likes : 250
     },
-    {
-        _id: "aaaad",
-        name: "Men Round Neck Pure Cotton T-shirt",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 110,
-        image: [p_img4],
-        category: "Men",
-        subCategory: "Topwear",
-        sizes: ["S", "M", "XXL"],
-        date: 1716621345448,
-        bestseller: false,
-        likes : 250
-    },
-    {
+     {
         _id: "aaaae",
         name: "Women Round Neck Cotton Top",
         description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
@@ -625,7 +698,7 @@ export const prod = [
         bestseller: true,
         likes : 250
     },
-    {
+     {
         _id: "aaaaf",
         name: "Girls Round Neck Cotton Top",
         description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
@@ -638,33 +711,7 @@ export const prod = [
         bestseller: true,
         likes : 250
     },
-    {
-        _id: "aaaag",
-        name: "Men Tapered Fit Flat-Front Trousers",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 190,
-        image: [p_img7],
-        category: "Men",
-        subCategory: "Bottomwear",
-        sizes: ["S", "L", "XL"],
-        date: 1716621542448,
-        bestseller: false,
-        likes : 250
-    },
-    {
-        _id: "aaaah",
-        name: "Men Round Neck Pure Cotton T-shirt",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 140,
-        image: [p_img8],
-        category: "Men",
-        subCategory: "Topwear",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716622345448,
-        bestseller: false,
-        likes : 250
-    },
-    {
+     {
         _id: "aaaai",
         name: "Girls Round Neck Cotton Top",
         description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
@@ -677,46 +724,8 @@ export const prod = [
         bestseller: false,
         likes : 250
     },
-    {
-        _id: "aaaaj",
-        name: "Men Tapered Fit Flat-Front Trousers",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 110,
-        image: [p_img10],
-        category: "Men",
-        subCategory: "Bottomwear",
-        sizes: ["S", "L", "XL"],
-        date: 1716622235448,
-        bestseller: false,
-        likes : 250
-    },
-    {
-        _id: "aaaak",
-        name: "Men Round Neck Pure Cotton T-shirt",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 120,
-        image: [p_img11],
-        category: "Men",
-        subCategory: "Topwear",
-        sizes: ["S", "M", "L"],
-        date: 1716623345448,
-        bestseller: false,
-        likes : 250
-    },
-    {
-        _id: "aaaal",
-        name: "Men Round Neck Pure Cotton T-shirt",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 150,
-        image: [p_img12],
-        category: "Men",
-        subCategory: "Topwear",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716624445448,
-        bestseller: false,
-        likes : 250
-    },
-    {
+
+      {
         _id: "aaaam",
         name: "Women Round Neck Cotton Top",
         description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
@@ -729,18 +738,44 @@ export const prod = [
         bestseller: true,
         likes : 250
     },
-    {
-        _id: "aaaan",
-        name: "Boy Round Neck Pure Cotton T-shirt",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 160,
-        image: [p_img14],
+        {
+        _id: "aaacw",
+        name: "Navy and Red Plaid Casual Shirt",
+        description: "This stylish men's casual shirt features a classic plaid pattern with a primary color palette of deep navy and vibrant red, accented by subtle light blue lines. The shirt has a button-down front, a standard collar, and long sleeves with roll-up tabs for a versatile look. The fabric has a slightly wrinkled, crinkled texture that gives it a relaxed, laid-back feel. A small patch pocket on the chest adds a functional detail. Paired with light-wash jeans and a leather bracelet, this shirt is a great choice for a casual day out.",
+        price: 899,
+        image: [p_68],
+        category: "Men",
+        subCategory: "Topwear",
+        sizes: ["S", "M", "L", "XL"],
+        date: 1716668445448,
+        bestseller: false,
+        likes : 259
+    },
+{
+        _id: "aaacx",
+        name: "Beige Straight-Fit Trousers with Drawstring Waist",
+        description: "These versatile trousers are designed for both comfort and a clean, relaxed style. Made from a lightweight, beige linen-blend fabric, they feature a visible elasticated drawstring waist for an adjustable fit. The pants have a straight-leg silhouette, providing a modern, comfortable drape without being too baggy. They include functional side pockets and are a great choice for a casual, warm-weather look. Paired with white sneakers, these trousers offer a comfortable yet polished aesthetic",
+        price: 679,
+        image: [p_69],
+        category: "Men",
+        subCategory: "Bottomwear",
+        sizes: ["S", "M", "L", "XL"],
+        date: 1716668445448,
+        bestseller: false,
+        likes : 258
+    },
+{
+        _id: "aaacz",
+        name: "Boys' Olive Green and Black Bomber Jacket",
+        description: "This stylish bomber jacket is perfect for a cool and casual look. It features a modern color-block design with an olive green body and contrasting black raglan sleeves. The jacket has a full-zip front, a ribbed collar, and cuffs for a comfortable fit. A small, subtle patch is visible on the left arm. This versatile piece is paired with blue denim jeans, making it an excellent choice for everyday wear.",
+        price: 678,
+        image: [p_71],
         category: "Kids",
         subCategory: "Topwear",
         sizes: ["S", "M", "L", "XL"],
-        date: 1716626645448,
+        date: 1716668445448,
         bestseller: false,
-        likes : 250
+        likes : 678
     },
     {
         _id: "aaaao",

@@ -9,6 +9,7 @@ import banner5 from "../assets/images/banner5.jpg";
 import banner6 from "../assets/images/banner6.webp";
 import banner7 from "../assets/images/banner8.jpg";
 import banner8 from "../assets/images/banner8.webp";
+import {assets} from '../assets/assets'
 
 
 const images = [banner1, banner2, banner3, banner4 , banner5 , banner6 ,banner7 , banner8];
@@ -25,6 +26,9 @@ const Carousel = () => {
 
   return (
     <div className="relative w-full h-[300px] overflow-hidden">
+      <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
+        OFFERS AND DEALS
+      </h2>
       <AnimatePresence>
         <motion.img
           key={index}

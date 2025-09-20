@@ -1,0 +1,102 @@
+{
+  "User_1": {
+    "wishlist": ["prod_1", "prod_22", "prod_70"],
+    "cart": ["prod_13"],
+    "search_history": ["black jacket", "winter coat", "leather jackets"]
+  },
+  "User_2": {
+    "wishlist": ["prod_4", "prod_30", "prod_15"],
+    "cart": ["prod_20"],
+    "search_history": ["floral dress", "boho skirt", "maxi dress"]
+  },
+  "User_3": {
+    "wishlist": ["prod_5", "prod_32", "prod_24"],
+    "cart": ["prod_71"],
+    "search_history": ["leather boots", "loafers", "formal shoes"]
+  },
+  "User_4": {
+    "wishlist": ["prod_6", "prod_18", "prod_75"],
+    "cart": ["prod_58"],
+    "search_history": ["joggers", "hoodie", "sweatpants"]
+  },
+  "User_5": {
+    "wishlist": ["prod_17", "prod_69", "prod_81"],
+    "cart": ["prod_9"],
+    "search_history": ["camo pants", "rain jacket", "windbreaker"]
+  },
+  "User_6": {
+    "wishlist": ["prod_10", "prod_33", "prod_88"],
+    "cart": ["prod_3"],
+    "search_history": ["flared jeans", "denim skirt", "distressed jeans"]
+  },
+  "User_7": {
+    "wishlist": ["prod_39", "prod_83", "prod_86"],
+    "cart": ["prod_53"],
+    "search_history": ["white blouse", "silk shirt", "formal shirts"]
+  },
+  "User_8": {
+    "wishlist": ["prod_12", "prod_19", "prod_55"],
+    "cart": ["prod_80"],
+    "search_history": ["running sneakers", "black high-tops", "white sneakers"]
+  },
+  "User_9": {
+    "wishlist": ["prod_25", "prod_52", "prod_62"],
+    "cart": ["prod_82"],
+    "search_history": ["swimsuit", "bikini", "beach wear"]
+  },
+  "User_10": {
+    "wishlist": ["prod_95", "prod_66", "prod_77"],
+    "cart": ["prod_94"],
+    "search_history": ["silk scarf", "tote bag", "formal accessories"]
+  },
+  "User_11": {
+    "wishlist": ["prod_41", "prod_42"],
+    "cart": ["prod_99"],
+    "search_history": ["black trousers", "pencil skirt", "tuxedo"]
+  },
+  "User_12": {
+    "wishlist": ["prod_47", "prod_21"],
+    "cart": ["prod_36"],
+    "search_history": ["cashmere sweater", "knitted cardigan"]
+  },
+  "User_13": {
+    "wishlist": ["prod_48", "prod_11"],
+    "cart": ["prod_2"],
+    "search_history": ["cropped top", "striped t-shirt", "white tank top"]
+  },
+  "User_14": {
+    "wishlist": ["prod_44", "prod_56"],
+    "cart": ["prod_73"],
+    "search_history": ["down jacket", "pea coat", "puffer jacket"]
+  },
+  "User_15": {
+    "wishlist": ["prod_50", "prod_57"],
+    "cart": ["prod_8"],
+    "search_history": ["winter boots", "corduroy pants", "wool scarf"]
+  },
+  "User_16": {
+    "wishlist": ["prod_60", "prod_78"],
+    "cart": ["prod_7"],
+    "search_history": ["cocktail dress", "slip dress", "evening gown"]
+  },
+  "User_17": {
+    "wishlist": ["prod_96", "prod_93"],
+    "cart": ["prod_79"],
+    "search_history": ["track jacket", "sport bra", "running leggings"]
+  },
+  "User_18": {
+    "wishlist": ["prod_61"],
+    "cart": [],
+    "search_history": ["parka", "green jacket"]
+  },
+  "User_19": {
+    "wishlist": [],
+    "cart": ["prod_98", "prod_63"],
+    "search_history": ["flannel shirt", "button-down shirt"]
+  },
+  "User_20": {
+    "wishlist": ["prod_97"],
+    "cart": [],
+    "search_history": []
+  }
+}

@@ -25,7 +25,7 @@ const Navbar = () => {
     <div className="flex items-center justify-between py-3 px-4 sm:px-6 shadow-sm border-b bg-white">
       {/* Logo */}
       <Link to="/">
-        <img src={assets.logo} className="w-[60px] sm:w-[70px]" alt="logo" />
+        <img src={assets.myntra2} className="w-[60px] sm:w-[70px]" alt="logo" />
       </Link>
 
       {/* Desktop Menu */}
@@ -64,34 +64,6 @@ const Navbar = () => {
           <p className="text-[10px] sm:text-xs text-gray-700 font-medium">Search</p>
         </div>
 
-        {/* Profile (only desktop) */}
-        <div className="hidden lg:block group relative text-center">
-          <img
-            onClick={() => (token ? null : navigate("/login"))}
-            src={assets.profile_icon}
-            className="w-5 md:w-6 cursor-pointer mx-auto"
-            alt="profile"
-          />
-          <p className="text-[10px] sm:text-xs text-gray-700 font-medium">Profile</p>
-
-          {token && (
-            <div className="hidden group-hover:block absolute right-0 mt-2 w-36 py-3 px-4 bg-white border rounded shadow-md">
-              <p
-                onClick={() => navigate("/orders")}
-                className="cursor-pointer hover:text-black text-gray-600 mb-2"
-              >
-                Orders
-              </p>
-              <p
-                onClick={logout}
-                className="cursor-pointer hover:text-black text-gray-600"
-              >
-                Logout
-              </p>
-            </div>
-          )}
-        </div>
-
         {/* Wishlist (desktop only) */}
         <Link to="/Wishlist" className="hidden lg:flex flex-col items-center text-center">
           <img src={assets.heart_icon} className="w-5 md:w-7" alt="wishlist" />
@@ -108,6 +80,36 @@ const Navbar = () => {
             </span>
           )}
         </Link>
+
+        {/* Profile (desktop) */}
+        <div className="hidden lg:block group relative text-center">
+          <div className="flex flex-col items-center">
+            <img
+              onClick={() => (token ? null : navigate("/login"))}
+              src={assets.profile_icon}
+              className="w-5 md:w-6 cursor-pointer mx-auto"
+              alt="profile"
+            />
+            <p className="text-[10px] sm:text-xs text-gray-700 font-medium">Profile</p>
+          </div>
+          
+          {token && (
+            <div className="hidden group-hover:block absolute right-0 mt-0 w-36 py-3 px-4 bg-white border rounded shadow-md z-50">
+              <p
+                onClick={() => navigate("/orders")}
+                className="cursor-pointer hover:text-black text-gray-600 mb-2"
+              >
+                Orders
+              </p>
+              <p
+                onClick={logout}
+                className="cursor-pointer hover:text-black text-gray-600"
+              >
+                Logout
+              </p>
+            </div>
+          )}
+        </div>
 
         {/* Mobile SWYFT Logo */}
         <div className="flex flex-col items-center lg:hidden text-center">
