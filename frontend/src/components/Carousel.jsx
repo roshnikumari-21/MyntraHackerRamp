@@ -11,9 +11,7 @@ import banner7 from "../assets/images/banner8.jpg";
 import banner8 from "../assets/images/banner8.webp";
 import {assets} from '../assets/assets'
 
-
 const images = [banner1, banner2, banner3, banner4 , banner5 , banner6 ,banner7 , banner8];
-
 
 const Carousel = () => {
   const [index, setIndex] = useState(0);
