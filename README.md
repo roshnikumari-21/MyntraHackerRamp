@@ -112,6 +112,9 @@ We address these challenges with **two core products**:
 
 ---
 
+🎥 [Watch the Demo Video](https://youtu.be/VISbZo4rW74?si=lDFEz70XDOPVe_9P)
+
+
 ## 📚 References & Links
 - 🔗 [GitHub Repository](https://github.com/aprajita-99/MyntraHackerramp)  
 - 🧠 [IDM-VTON](https://github.com/yisol/IDM-VTON).
