@@ -115,6 +115,12 @@ We address these challenges with **two core products**:
 🎥 [Watch the Demo Video](https://youtu.be/VISbZo4rW74?si=lDFEz70XDOPVe_9P)
 
 
+## 📄 Project Presentation (PDF)
+👇 [Click here to view the PDF]
+
+[![Presentation Preview](ppt_preview.png)](NIT_Jamshedpur_ButterFlies.pdf)
+
+
 ## 📚 References & Links
 - 🔗 [GitHub Repository](https://github.com/aprajita-99/MyntraHackerramp)  
 - 🧠 [IDM-VTON](https://github.com/yisol/IDM-VTON).
